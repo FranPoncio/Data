@@ -1,0 +1,5 @@
+route_id,service_id,trip_id
+PUN1,diario,PUN1_ida
+PUN2,diario,PUN2_ida
+CAL1,diario,CAL1_ida
+CAL2,diario,CAL2_ida

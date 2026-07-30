@@ -1,0 +1,18 @@
+stop_id,stop_name,stop_lat,stop_lon
+T_CBA,Terminal de Ómnibus de Córdoba,-31.4188,-64.1706
+VCP,Villa Carlos Paz,-31.4241,-64.4978
+BIA,Bialet Massé,-31.3300,-64.4700
+SMP,Santa María de Punilla,-31.2900,-64.4700
+COS,Cosquín,-31.2447,-64.4653
+VHE,Valle Hermoso,-31.1200,-64.4900
+LFA,La Falda,-31.0836,-64.4869
+HGR,Huerta Grande,-31.0700,-64.4900
+VGI,Villa Giardino,-31.0500,-64.4900
+LCO,Los Cocos,-31.0000,-64.5100
+LCU,La Cumbre,-30.9700,-64.4900
+CDM,Capilla del Monte,-30.8600,-64.5250
+ALT,Alta Gracia,-31.6600,-64.4280
+VGB,Villa General Belgrano,-31.9786,-64.5586
+SRC,Santa Rosa de Calamuchita,-32.0664,-64.5389
+VDI,Villa del Dique,-32.1700,-64.4600
+EMB,Embalse,-32.1928,-64.4033

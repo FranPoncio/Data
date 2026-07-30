@@ -91,6 +91,7 @@ async function cargarGTFS() {
 const MODO_ICONO = {
   subte: "🚇",
   colectivo: "🚌",
+  micro: "🚍",
   tren: "🚆",
   tranvía: "🚋",
   ferry: "⛴️",
@@ -103,10 +104,13 @@ function transporteHTML(p) {
   if (g && g.lines && g.lines.length) {
     const ic = MODO_ICONO[g.modes[0]] || "🚏";
     const modos = g.modes.join(" · ");
+    // "empresas" para micros de larga distancia; "líneas" para el resto.
+    const etiqueta = g.modes[0] === "micro" ? "empresas" : "líneas";
     const lineas = g.lines.length > 10 ? g.lines.slice(0, 10).join(", ") + "…" : g.lines.join(", ");
+    const dist = g.nearestM < 60 ? "" : ` a ${g.nearestM} m`;
     return `<div class="poi-row"><span class="ic">${ic}</span><span>
-      <b>Transporte (GTFS):</b> ${modos} — líneas ${lineas}
-      <span class="poi-gtfs">· parada «${g.nearestStop}» a ${g.nearestM} m</span></span></div>`;
+      <b>Transporte (GTFS):</b> ${modos} — ${etiqueta} ${lineas}
+      <span class="poi-gtfs">· parada «${g.nearestStop}»${dist}</span></span></div>`;
   }
   return `<div class="poi-row"><span class="ic">🚌</span><span><b>Transporte público:</b> ${p.transporte}</span></div>`;
 }

@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone
+inter_cba,Interurbano Córdoba (corredores Punilla y Calamuchita),https://www.cordoba.gob.ar,America/Argentina/Cordoba
