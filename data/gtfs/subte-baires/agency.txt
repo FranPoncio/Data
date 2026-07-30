@@ -1,0 +1,2 @@
+agency_id,agency_name,agency_url,agency_timezone
+subte,Subte de Buenos Aires,https://www.buenosaires.gob.ar/subte,America/Argentina/Buenos_Aires

@@ -10,7 +10,7 @@ calculando las mejores rutas según tu ubicación y tu medio de transporte.
 1. **Menú de destino.** Elegís la **localidad / región** (agrupada por provincia) y el **punto turístico** exacto al que querés ir.
 2. **Rutas según tu ubicación, con prioridades.**
    - **Prioridad 1:** la ruta **más corta** desde tu punto de salida al destino.
-   - **Prioridad 2:** una ruta **escénica** que pasa por otro punto turístico ubicado *de camino* entre la salida y la llegada.
+   - **Prioridad 2:** una ruta **escénica** que pasa por otro punto turístico ubicado _de camino_ entre la salida y la llegada.
 3. **Alternativas por medio de transporte.** Auto 🚗, moto 🏍️, bicicleta 🚲, monopatín 🛴, transporte público 🚌 o caminando 🚶. Cada modo recalcula distancia y tiempo con su propio perfil de ruteo.
 4. **Mapa con estilo propio.** Base gris de OpenStreetMap (tiles CARTO Positron/Dark Matter según el tema) con filtro propio + pines personalizados.
 5. **Pines interactivos.** Al hacer clic en cualquier pin se abre una ficha con **foto**, **reseña histórica**, **precio de entrada** y cómo llegar en **transporte público**.
@@ -20,8 +20,8 @@ calculando las mejores rutas según tu ubicación y tu medio de transporte.
 - 🎨 **Tema claro/oscuro** con botón que respeta la preferencia de tu sistema (se recuerda tu elección).
 - 🔤 **Tipografías modernas** (Fredoka + Nunito) vendorizadas localmente.
 - 🏷️ **Filtro por tipo de actividad**: naturaleza y miradores, trekking, museos, histórico, shopping y paseos/peatonal.
-- 🎫 **Precio de entrada** de cada lugar (o si es gratis) — *orientativo*.
-- 🚌 **Info de transporte público** para llegar a cada punto — *orientativa*.
+- 🎫 **Precio de entrada** de cada lugar (o si es gratis) — _orientativo_.
+- 🚌 **Info de transporte público** para llegar a cada punto — _orientativa_.
 - 📚 **76 puntos turísticos** en 14 localidades/regiones, incluyendo los valles cordobeses de **Punilla** y **Calamuchita**.
 
 > ⚠ Los precios de entrada y la información de transporte son **orientativos**: Argentina tiene alta inflación y las líneas de colectivo cambian. Sirven como guía, no como dato oficial.
@@ -31,6 +31,20 @@ calculando las mejores rutas según tu ubicación y tu medio de transporte.
 - El ruteo real usa el servidor público **[Valhalla](https://valhalla.readthedocs.io/) de OpenStreetMap** (`valhalla1.openstreetmap.de`), que no requiere API key y soporta justamente los 6 perfiles de transporte (`auto`, `motorcycle`, `bicycle`, `motor_scooter`, `bus`, `pedestrian`).
 - La ubicación del usuario se obtiene con la **Geolocation API** del navegador. También podés **hacer clic en el mapa** para fijar el punto de salida.
 - Si no hay conexión al ruteador, la app degrada con elegancia y muestra una **ruta estimada** (línea + tiempo según la velocidad típica del modo).
+
+## 🚌 Transporte público real (GTFS)
+
+Además del texto orientativo, la app muestra **transporte público derivado de datos GTFS oficiales**: para cada punto turístico calcula las **paradas y líneas reales** que pasan cerca (dentro de un radio configurable) y las muestra en la ficha (ej.: _"subte — líneas B, C · parada «Florida» a 104 m"_).
+
+- El repo incluye un feed GTFS real del **Subte de Buenos Aires** en `data/gtfs/subte-baires/`, ya procesado en `assets/data/transporte-gtfs.json`.
+- El pipeline `scripts/build-gtfs.mjs` ingiere **cualquier feed GTFS** (carpetas locales o zips remotos) y regenera ese JSON:
+
+  ```bash
+  npm run gtfs
+  ```
+
+- Para sumar **colectivos y otras ciudades** (AMBA, Rosario, Córdoba, Mendoza…), agregá la URL del GTFS oficial en `scripts/gtfs-sources.json` y corré `npm run gtfs` (o disparás el workflow **"Actualizar datos GTFS"** desde la pestaña Actions, que lo hace y commitea solo).
+- Donde no hay cobertura GTFS, la ficha usa la nota de transporte curada como respaldo.
 
 ## 🚀 Cómo ejecutarla
 
@@ -48,12 +62,19 @@ python3 -m http.server 8000
 
 ```
 .
-├── index.html            # Estructura de la app
+├── index.html                 # Estructura de la app
 ├── assets/
-│   ├── css/style.css     # Estilos + estilo propio del mapa y los pines
-│   └── js/
-│       ├── data.js       # Dataset de localidades, puntos turísticos y modos
-│       └── app.js        # Lógica: mapa, ruteo, prioridades, UI
+│   ├── css/style.css          # Estilos, tema claro/oscuro, pines
+│   ├── data/
+│   │   └── transporte-gtfs.json  # Transporte real generado desde GTFS
+│   ├── js/
+│   │   ├── data.js            # Localidades, puntos turísticos, actividades y modos
+│   │   └── app.js             # Lógica: mapa, ruteo, prioridades, filtros, GTFS, UI
+│   └── vendor/                # Leaflet y fuentes (Fredoka, Nunito) vendorizados
+├── data/gtfs/                 # Feeds GTFS crudos (Subte de Buenos Aires)
+├── scripts/
+│   ├── build-gtfs.mjs         # Pipeline GTFS -> transporte-gtfs.json
+│   └── gtfs-sources.json      # Fuentes GTFS (locales y remotas)
 └── README.md
 ```
 
@@ -66,4 +87,4 @@ Editá `assets/js/data.js`. Cada localidad tiene un arreglo `puntos`; agregá un
 
 - Cartografía: © OpenStreetMap contributors · © CARTO.
 - Ruteo: proyecto Valhalla / OpenStreetMap.
-- Imágenes: Wikimedia Commons (con *fallback* automático si alguna no carga).
+- Imágenes: Wikimedia Commons (con _fallback_ automático si alguna no carga).

@@ -1,2 +1,6 @@
 # Librerías de terceros — no reformatear
 assets/vendor/
+
+# Artefactos generados y datos GTFS crudos
+assets/data/
+data/gtfs/

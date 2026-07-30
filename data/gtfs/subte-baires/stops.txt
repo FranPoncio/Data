@@ -1,0 +1,24 @@
+stop_id,stop_name,stop_lat,stop_lon
+A1,Plaza de Mayo,-34.6086,-58.3708
+A2,Perú,-34.6085,-58.3745
+A3,Lima,-34.6091,-58.3806
+A4,Sáenz Peña,-34.6096,-58.3866
+B1,Leandro N. Alem,-34.6003,-58.3702
+B2,Florida,-34.6006,-58.3750
+B3,Carlos Pellegrini,-34.6039,-58.3806
+B4,Uruguay,-34.6047,-58.3878
+B5,Callao,-34.6053,-58.3924
+C1,Retiro,-34.5925,-58.3745
+C2,Lavalle,-34.6036,-58.3789
+C3,Diagonal Norte,-34.6069,-58.3792
+C4,Avenida de Mayo,-34.6089,-58.3789
+D1,Catedral,-34.6080,-58.3735
+D2,9 de Julio,-34.6042,-58.3816
+D3,Tribunales,-34.6013,-58.3846
+D4,Callao,-34.6046,-58.3924
+D5,Facultad de Medicina,-34.5993,-58.3975
+D6,Plaza Italia,-34.5806,-58.4206
+D7,Palermo,-34.5786,-58.4258
+D8,Ministro Carranza,-34.5757,-58.4318
+E1,Bolívar,-34.6086,-58.3739
+E2,Independencia,-34.6155,-58.3796

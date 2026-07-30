@@ -1,0 +1,12 @@
+{
+  "radiusMeters": 650,
+  "comment": "Fuentes GTFS. 'dir' = carpeta local con los .txt (se versiona en el repo). 'url' = zip GTFS remoto (se descarga al correr el pipeline con internet; ideal para colectivos/otras ciudades). Agregá los feeds oficiales que quieras: AMBA, Rosario, Córdoba, Mendoza, etc.",
+  "sources": [{ "id": "subte-baires", "dir": "data/gtfs/subte-baires" }],
+  "remote": [
+    {
+      "id": "colectivos-amba",
+      "url": "",
+      "nota": "Poné acá la URL del GTFS de colectivos del AMBA (Ministerio de Transporte / datos abiertos). Al correr `npm run gtfs` con internet, se descarga y se procesa junto con el resto."
+    }
+  ]
+}
