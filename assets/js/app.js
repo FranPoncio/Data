@@ -69,7 +69,9 @@ function iconoPin(tipo, emoji) {
   return L.divIcon({
     className: "",
     html: `<div class="pin ${tipo}"><div class="pin-body"><span>${emoji}</span></div></div>`,
-    iconSize: [30, 30], iconAnchor: [15, 30], popupAnchor: [0, -30],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30],
   });
 }
 
@@ -119,7 +121,11 @@ function dibujarPines() {
 
   puntosVisibles().forEach((p) => {
     const esDestino = estado.destino && p.id === estado.destino.id;
-    const punto = { ...p, localidadNombre: estado.localidad.nombre, provincia: estado.localidad.provincia };
+    const punto = {
+      ...p,
+      localidadNombre: estado.localidad.nombre,
+      provincia: estado.localidad.provincia,
+    };
     const m = L.marker([p.lat, p.lng], {
       icon: iconoPin(esDestino ? "destino" : "", esDestino ? "★" : "•"),
       zIndexOffset: esDestino ? 1000 : 0,
@@ -137,8 +143,10 @@ function setOrigen(coords, etiqueta) {
   document.getElementById("origen-estado").textContent =
     `✔ Salida: ${etiqueta} (${coords[0].toFixed(4)}, ${coords[1].toFixed(4)})`;
   if (marcadorOrigen) capaPines.removeLayer(marcadorOrigen);
-  marcadorOrigen = L.marker(coords, { icon: iconoPin("origen", "🧍"), zIndexOffset: 1200 })
-    .bindPopup("<b>Tu punto de salida</b>");
+  marcadorOrigen = L.marker(coords, {
+    icon: iconoPin("origen", "🧍"),
+    zIndexOffset: 1200,
+  }).bindPopup("<b>Tu punto de salida</b>");
   capaPines.addLayer(marcadorOrigen);
   actualizarBotonCrear();
 }
@@ -146,7 +154,8 @@ function setOrigen(coords, etiqueta) {
 function usarGeolocalizacion() {
   const btn = document.getElementById("btn-ubicacion");
   if (!navigator.geolocation) {
-    document.getElementById("origen-estado").textContent = "Tu navegador no soporta geolocalización. Hacé clic en el mapa.";
+    document.getElementById("origen-estado").textContent =
+      "Tu navegador no soporta geolocalización. Hacé clic en el mapa.";
     return;
   }
   btn.textContent = "📍 Obteniendo ubicación…";
@@ -173,20 +182,35 @@ function haversine(a, b) {
   const R = 6371;
   const dLat = ((b[0] - a[0]) * Math.PI) / 180;
   const dLng = ((b[1] - a[1]) * Math.PI) / 180;
-  const la1 = (a[0] * Math.PI) / 180, la2 = (b[0] * Math.PI) / 180;
+  const la1 = (a[0] * Math.PI) / 180,
+    la2 = (b[0] * Math.PI) / 180;
   const h = Math.sin(dLat / 2) ** 2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dLng / 2) ** 2;
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
 function decodePolyline(str, precision = 6) {
-  let index = 0, lat = 0, lng = 0;
-  const coords = [], factor = Math.pow(10, precision);
+  let index = 0,
+    lat = 0,
+    lng = 0;
+  const coords = [],
+    factor = Math.pow(10, precision);
   while (index < str.length) {
-    let result = 1, shift = 0, b;
-    do { b = str.charCodeAt(index++) - 63 - 1; result += b << shift; shift += 5; } while (b >= 0x1f);
+    let result = 1,
+      shift = 0,
+      b;
+    do {
+      b = str.charCodeAt(index++) - 63 - 1;
+      result += b << shift;
+      shift += 5;
+    } while (b >= 0x1f);
     lat += result & 1 ? ~(result >> 1) : result >> 1;
-    result = 1; shift = 0;
-    do { b = str.charCodeAt(index++) - 63 - 1; result += b << shift; shift += 5; } while (b >= 0x1f);
+    result = 1;
+    shift = 0;
+    do {
+      b = str.charCodeAt(index++) - 63 - 1;
+      result += b << shift;
+      shift += 5;
+    } while (b >= 0x1f);
     lng += result & 1 ? ~(result >> 1) : result >> 1;
     coords.push([lat / factor, lng / factor]);
   }
@@ -203,7 +227,9 @@ function fmtDuracion(seg) {
 async function valhalla(locations, costing) {
   const body = {
     locations: locations.map((l) => ({ lat: l[0], lon: l[1] })),
-    costing, alternates: 1, directions_options: { units: "kilometers" },
+    costing,
+    alternates: 1,
+    directions_options: { units: "kilometers" },
   };
   const url = `${VALHALLA_URL}?json=${encodeURIComponent(JSON.stringify(body))}`;
   const res = await fetch(url, { method: "GET" });
@@ -220,13 +246,15 @@ function tripARuta(trip, meta) {
 // Punto turístico "de camino" para la ruta escénica (prioridad 2).
 function elegirPuntoEscenico(origen, destino) {
   const directo = haversine(origen, destino);
-  let mejor = null, mejorDesvio = Infinity;
+  let mejor = null,
+    mejorDesvio = Infinity;
   TODOS_LOS_PUNTOS.forEach((p) => {
     const c = [p.lat, p.lng];
     if (Math.abs(c[0] - destino[0]) < 0.01 && Math.abs(c[1] - destino[1]) < 0.01) return;
     const desvio = haversine(origen, c) + haversine(c, destino) - directo;
     if (desvio > 0.3 && desvio < directo * 0.8 && desvio < mejorDesvio) {
-      mejorDesvio = desvio; mejor = p;
+      mejorDesvio = desvio;
+      mejor = p;
     }
   });
   return mejor;
@@ -235,7 +263,13 @@ function elegirPuntoEscenico(origen, destino) {
 function rutaEstimada(waypoints, meta) {
   let dist = 0;
   for (let i = 1; i < waypoints.length; i++) dist += haversine(waypoints[i - 1], waypoints[i]);
-  return { coords: waypoints, distancia: dist, duracion: (dist / estado.modo.velocidad) * 3600, estimada: true, ...meta };
+  return {
+    coords: waypoints,
+    distancia: dist,
+    duracion: (dist / estado.modo.velocidad) * 3600,
+    estimada: true,
+    ...meta,
+  };
 }
 
 async function crearRutas() {
@@ -248,14 +282,28 @@ async function crearRutas() {
 
   try {
     const data = await valhalla([origen, destino], costing);
-    const principal = tripARuta(data.trip, { nombre: "Ruta más corta", tag: "Prioridad 1", tipo: "corta" });
+    const principal = tripARuta(data.trip, {
+      nombre: "Ruta más corta",
+      tag: "Prioridad 1",
+      tipo: "corta",
+    });
     rutas.push(principal);
     if (data.alternates && data.alternates.length) {
-      const alt = tripARuta(data.alternates[0].trip, { nombre: "Ruta alternativa", tag: "Alternativa", tipo: "alternativa" });
+      const alt = tripARuta(data.alternates[0].trip, {
+        nombre: "Ruta alternativa",
+        tag: "Alternativa",
+        tipo: "alternativa",
+      });
       if (Math.abs(alt.distancia - principal.distancia) > 0.5) rutas.push(alt);
     }
   } catch (e) {
-    rutas.push(rutaEstimada([origen, destino], { nombre: "Ruta más corta (estimada)", tag: "Prioridad 1", tipo: "corta" }));
+    rutas.push(
+      rutaEstimada([origen, destino], {
+        nombre: "Ruta más corta (estimada)",
+        tag: "Prioridad 1",
+        tipo: "corta",
+      })
+    );
   }
 
   const escenico = elegirPuntoEscenico(origen, destino);
@@ -263,9 +311,23 @@ async function crearRutas() {
     const via = [escenico.lat, escenico.lng];
     try {
       const data = await valhalla([origen, via, destino], costing);
-      rutas.push(tripARuta(data.trip, { nombre: "Ruta escénica", tag: "Prioridad 2", tipo: "escenica", via: escenico.nombre }));
+      rutas.push(
+        tripARuta(data.trip, {
+          nombre: "Ruta escénica",
+          tag: "Prioridad 2",
+          tipo: "escenica",
+          via: escenico.nombre,
+        })
+      );
     } catch (e) {
-      rutas.push(rutaEstimada([origen, via, destino], { nombre: "Ruta escénica (estimada)", tag: "Prioridad 2", tipo: "escenica", via: escenico.nombre }));
+      rutas.push(
+        rutaEstimada([origen, via, destino], {
+          nombre: "Ruta escénica (estimada)",
+          tag: "Prioridad 2",
+          tipo: "escenica",
+          via: escenico.nombre,
+        })
+      );
     }
   }
 
@@ -279,10 +341,13 @@ function dibujarRuta(indice) {
   capaRutas.clearLayers();
   const r = estado.rutas[indice];
   if (!r) return;
-  const color = r.tipo === "escenica" ? "#c084fc" : r.tipo === "alternativa" ? "#74acdf" : "#f6b40e";
+  const color =
+    r.tipo === "escenica" ? "#c084fc" : r.tipo === "alternativa" ? "#74acdf" : "#f6b40e";
   L.polyline(r.coords, { color: "#000", weight: 8, opacity: 0.22 }).addTo(capaRutas);
   L.polyline(r.coords, { color, weight: 5, opacity: 0.95, lineJoin: "round" }).addTo(capaRutas);
-  document.querySelectorAll(".ruta-card").forEach((el, i) => el.classList.toggle("activa", i === indice));
+  document
+    .querySelectorAll(".ruta-card")
+    .forEach((el, i) => el.classList.toggle("activa", i === indice));
   map.fitBounds(L.latLngBounds(r.coords).pad(0.15));
 }
 
@@ -290,7 +355,9 @@ function dibujarRuta(indice) {
 //  DROPDOWN CUSTOM
 // =====================================================================
 function cerrarDropdowns(excepto) {
-  document.querySelectorAll(".dropdown.abierto").forEach((d) => { if (d !== excepto) d.classList.remove("abierto"); });
+  document.querySelectorAll(".dropdown.abierto").forEach((d) => {
+    if (d !== excepto) d.classList.remove("abierto");
+  });
 }
 
 // options: [{value, label, sublabel, emoji, group}]
@@ -299,7 +366,10 @@ function construirDropdown(cont, { placeholder, options, valorSel, onSelect }) {
   let menuHTML = "";
   let grupoActual = null;
   options.forEach((o) => {
-    if (o.group && o.group !== grupoActual) { grupoActual = o.group; menuHTML += `<div class="dropdown-group">${o.group}</div>`; }
+    if (o.group && o.group !== grupoActual) {
+      grupoActual = o.group;
+      menuHTML += `<div class="dropdown-group">${o.group}</div>`;
+    }
     menuHTML += `<div class="dropdown-option ${o.value === valorSel ? "sel" : ""}" data-value="${o.value}">
       ${o.emoji ? `<span class="emoji">${o.emoji}</span>` : ""}
       <span>${o.label}${o.sublabel ? ` <small>· ${o.sublabel}</small>` : ""}</span></div>`;
@@ -330,9 +400,13 @@ function renderDropdownLocalidad() {
   const porProvincia = {};
   LOCALIDADES.forEach((l) => (porProvincia[l.provincia] ||= []).push(l));
   const options = [];
-  Object.keys(porProvincia).sort().forEach((prov) => {
-    porProvincia[prov].forEach((l) => options.push({ value: l.id, label: l.nombre, group: prov, emoji: "📍" }));
-  });
+  Object.keys(porProvincia)
+    .sort()
+    .forEach((prov) => {
+      porProvincia[prov].forEach((l) =>
+        options.push({ value: l.id, label: l.nombre, group: prov, emoji: "📍" })
+      );
+    });
   construirDropdown(document.getElementById("dd-localidad"), {
     placeholder: "— Elegí una localidad —",
     options,
@@ -344,7 +418,11 @@ function renderDropdownLocalidad() {
 function renderDropdownDestino() {
   const cont = document.getElementById("dd-destino");
   if (!estado.localidad) {
-    construirDropdown(cont, { placeholder: "— Elegí primero una localidad —", options: [], onSelect: () => {} });
+    construirDropdown(cont, {
+      placeholder: "— Elegí primero una localidad —",
+      options: [],
+      onSelect: () => {},
+    });
     return;
   }
   const vis = puntosVisibles();
@@ -447,7 +525,8 @@ function renderResultados() {
   cont.classList.remove("hidden");
   lista.innerHTML = "";
   const alguna = estado.rutas.some((r) => r.estimada);
-  hint.textContent = `${estado.modo.icon} ${estado.modo.nombre} · hacia ${estado.destino.nombre}` +
+  hint.textContent =
+    `${estado.modo.icon} ${estado.modo.nombre} · hacia ${estado.destino.nombre}` +
     (alguna ? " · (algunas rutas son estimadas por falta de conexión al ruteador)" : "");
   estado.rutas.forEach((r, i) => {
     const card = document.createElement("div");
