@@ -1,0 +1,16 @@
+{
+  "name": "rutas-argentinas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "App para planificar viajes a los puntos más turísticos de Argentina con las mejores rutas.",
+  "scripts": {
+    "start": "http-server -p 8000 -c-1",
+    "gtfs": "node scripts/build-gtfs.mjs",
+    "format": "prettier --write \"**/*.{js,css,html,json,md,yml}\" --ignore-path .prettierignore"
+  },
+  "devDependencies": {
+    "fflate": "^0.8.2",
+    "prettier": "^3.3.0"
+  }
+}

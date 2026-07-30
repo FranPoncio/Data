@@ -76,6 +76,40 @@ function iconoPin(tipo, emoji) {
 }
 
 // Popup con foto, badges, sinopsis, entrada y transporte (requisitos 5, 4 y 8).
+// Datos de transporte real derivados de GTFS (assets/data/transporte-gtfs.json).
+let GTFS = {};
+async function cargarGTFS() {
+  try {
+    const res = await fetch("assets/data/transporte-gtfs.json");
+    if (res.ok) GTFS = await res.json();
+  } catch {
+    /* sin datos GTFS: se usa el texto curado como respaldo */
+  }
+}
+
+const MODO_ICONO = {
+  subte: "🚇",
+  colectivo: "🚌",
+  tren: "🚆",
+  tranvía: "🚋",
+  ferry: "⛴️",
+  cable: "🚠",
+};
+
+// Fila de transporte del popup: usa GTFS real si hay cobertura; si no, el texto curado.
+function transporteHTML(p) {
+  const g = GTFS[p.id];
+  if (g && g.lines && g.lines.length) {
+    const ic = MODO_ICONO[g.modes[0]] || "🚏";
+    const modos = g.modes.join(" · ");
+    const lineas = g.lines.length > 10 ? g.lines.slice(0, 10).join(", ") + "…" : g.lines.join(", ");
+    return `<div class="poi-row"><span class="ic">${ic}</span><span>
+      <b>Transporte (GTFS):</b> ${modos} — líneas ${lineas}
+      <span class="poi-gtfs">· parada «${g.nearestStop}» a ${g.nearestM} m</span></span></div>`;
+  }
+  return `<div class="poi-row"><span class="ic">🚌</span><span><b>Transporte público:</b> ${p.transporte}</span></div>`;
+}
+
 function popupPunto(p) {
   const act = ACTIVIDAD_POR_ID[p.actividad];
   const cont = document.createElement("div");
@@ -90,7 +124,7 @@ function popupPunto(p) {
       <h3>${p.nombre}</h3>
       <p>${p.sinopsis}</p>
       <div class="poi-row"><span class="ic">🎫</span><span><b>Entrada:</b> ${p.entrada}</span></div>
-      <div class="poi-row"><span class="ic">🚌</span><span><b>Transporte público:</b> ${p.transporte}</span></div>
+      ${transporteHTML(p)}
       <div class="poi-loc">📍 ${p.localidadNombre || ""}${p.provincia ? " · " + p.provincia : ""}</div>
     </div>`;
   const img = cont.querySelector("img");
@@ -569,6 +603,11 @@ function main() {
   document.getElementById("btn-ubicacion").addEventListener("click", usarGeolocalizacion);
   document.getElementById("btn-crear").addEventListener("click", crearRutas);
   document.addEventListener("click", () => cerrarDropdowns(null));
+
+  // Cargar transporte GTFS real (asíncrono); al llegar, refrescar pines abiertos.
+  cargarGTFS().then(() => {
+    if (estado.localidad) dibujarPines();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", main);

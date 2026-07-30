@@ -1,0 +1,6 @@
+route_id,service_id,trip_id
+LineaA,dias_habiles,A_ida
+LineaB,dias_habiles,B_ida
+LineaC,dias_habiles,C_ida
+LineaD,dias_habiles,D_ida
+LineaE,dias_habiles,E_ida

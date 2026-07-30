@@ -1,0 +1,80 @@
+{
+  "obelisco": {
+    "lines": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 8,
+    "nearestM": 56,
+    "nearestStop": "9 de Julio",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "casa-rosada": {
+    "lines": [
+      "A",
+      "D",
+      "E"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 4,
+    "nearestM": 78,
+    "nearestStop": "Plaza de Mayo",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "teatro-colon": {
+    "lines": [
+      "B",
+      "C",
+      "D"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 5,
+    "nearestM": 103,
+    "nearestStop": "Tribunales",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "florida": {
+    "lines": [
+      "B",
+      "C"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 3,
+    "nearestM": 104,
+    "nearestStop": "Florida",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "distrito-arcos": {
+    "lines": [
+      "D"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 2,
+    "nearestM": 319,
+    "nearestStop": "Palermo",
+    "sources": [
+      "subte-baires"
+    ]
+  }
+}

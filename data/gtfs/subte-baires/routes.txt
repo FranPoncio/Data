@@ -1,0 +1,6 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color
+LineaA,subte,A,Línea A,1,18B03A
+LineaB,subte,B,Línea B,1,E20E17
+LineaC,subte,C,Línea C,1,006CB7
+LineaD,subte,D,Línea D,1,00845B
+LineaE,subte,E,Línea E,1,7B1FA2
