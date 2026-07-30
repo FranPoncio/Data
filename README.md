@@ -19,10 +19,12 @@ calculando las mejores rutas según tu ubicación y tu medio de transporte.
 
 - 🎨 **Tema claro/oscuro** con botón que respeta la preferencia de tu sistema (se recuerda tu elección).
 - 🔤 **Tipografías modernas** (Fredoka + Nunito) vendorizadas localmente.
-- 🏷️ **Filtro por tipo de actividad**: naturaleza y miradores, trekking, museos, histórico, shopping y paseos/peatonal.
+- 📌 **Pines coloreados por actividad**: cada pin usa el color de su sector (verde naturaleza, naranja trekking, azul museos, etc.); el destino se resalta con un aro.
+- 🎟️ **Pin de eventos** en el centro de cada localidad: foto, reseña y enlace a la **agenda oficial de eventos**.
+- 🏷️ **Filtro por 8 tipos de actividad**: naturaleza, trekking, museos, histórico, shopping, paseos, gastronomía y playas.
 - 🎫 **Precio de entrada** de cada lugar (o si es gratis) — _orientativo_.
 - 🚌 **Info de transporte público** para llegar a cada punto — _orientativa_.
-- 📚 **76 puntos turísticos** en 14 localidades/regiones, incluyendo los valles cordobeses de **Punilla** y **Calamuchita**.
+- 📚 **413 puntos turísticos** (≈30 por localidad) en 14 localidades/regiones, incluyendo los valles cordobeses de **Punilla** y **Calamuchita**.
 
 > ⚠ Los precios de entrada y la información de transporte son **orientativos**: Argentina tiene alta inflación y las líneas de colectivo cambian. Sirven como guía, no como dato oficial.
 
