@@ -1,86 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rutas Argentinas · Viajá a los mejores puntos turísticos</title>
-  <meta name="description" content="Planificá viajes a los puntos más turísticos de Argentina con las mejores rutas según tu ubicación y medio de transporte." />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rutas Argentinas · Viajá a los mejores puntos turísticos</title>
+    <meta
+      name="description"
+      content="Planificá viajes a los puntos más turísticos de Argentina con las mejores rutas según tu ubicación, actividad y medio de transporte."
+    />
 
-  <!-- Leaflet (vendorizado localmente — no requiere CDN) -->
-  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
-  <script src="assets/vendor/leaflet/leaflet.js"></script>
+    <!-- Leaflet (vendorizado localmente — no requiere CDN) -->
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
+    <script src="assets/vendor/leaflet/leaflet.js"></script>
 
-  <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body>
-  <div id="app">
-    <!-- ======================= PANEL LATERAL ======================= -->
-    <aside id="panel">
-      <header class="panel-header">
-        <div class="brand">
-          <span class="brand-sun">☀</span>
-          <div>
-            <h1>Rutas Argentinas</h1>
-            <p>Viajá a los mejores puntos turísticos del país</p>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- ======================= PANEL LATERAL ======================= -->
+      <aside id="panel">
+        <header class="panel-header">
+          <div class="brand">
+            <span class="brand-sun">☀</span>
+            <div>
+              <h1>Rutas Argentinas</h1>
+              <p>Viajá a los mejores puntos turísticos del país</p>
+            </div>
           </div>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            title="Cambiar tema claro/oscuro"
+            aria-label="Cambiar tema"
+          >
+            🌙
+          </button>
+        </header>
+
+        <div class="panel-body">
+          <!-- FILTRO POR ACTIVIDAD -->
+          <section class="block">
+            <h2>¿Qué querés hacer?</h2>
+            <div id="chips-actividad" class="chips"></div>
+          </section>
+
+          <!-- 1) DESTINO -->
+          <section class="block">
+            <h2><span class="step">1</span> ¿A dónde vas?</h2>
+            <div class="field">
+              <span>Localidad / región</span>
+              <div id="dd-localidad" class="dropdown"></div>
+            </div>
+            <div class="field">
+              <span>Destino específico</span>
+              <div id="dd-destino" class="dropdown"></div>
+            </div>
+          </section>
+
+          <!-- 2) MODO -->
+          <section class="block">
+            <h2><span class="step">2</span> ¿Cómo viajás?</h2>
+            <div id="modos" class="modos"></div>
+          </section>
+
+          <!-- 3) ORIGEN -->
+          <section class="block">
+            <h2><span class="step">3</span> ¿Desde dónde salís?</h2>
+            <button id="btn-ubicacion" class="btn btn-ghost">📍 Usar mi ubicación</button>
+            <p class="hint" id="origen-estado">
+              O hacé clic en el mapa para marcar tu punto de salida.
+            </p>
+          </section>
+
+          <button id="btn-crear" class="btn btn-primary btn-block" disabled>Crear rutas</button>
+
+          <!-- RESULTADOS -->
+          <section id="resultados" class="block resultados hidden">
+            <h2>Rutas sugeridas</h2>
+            <p class="hint" id="resultados-hint"></p>
+            <div id="lista-rutas"></div>
+          </section>
+
+          <footer class="panel-footer">
+            <p>
+              Mapa © OpenStreetMap · CARTO &nbsp;|&nbsp; Ruteo © Valhalla / OSM<br />Precios y
+              transporte son orientativos.
+            </p>
+          </footer>
         </div>
-      </header>
+      </aside>
 
-      <div class="panel-body">
-        <!-- 1) DESTINO -->
-        <section class="block">
-          <h2><span class="step">1</span> ¿A dónde vas?</h2>
-          <label class="field">
-            <span>Localidad / punto turístico</span>
-            <select id="sel-localidad"></select>
-          </label>
-          <label class="field">
-            <span>Destino específico</span>
-            <select id="sel-destino"></select>
-          </label>
-        </section>
+      <!-- ======================= MAPA ======================= -->
+      <main id="map"></main>
 
-        <!-- 2) MODO -->
-        <section class="block">
-          <h2><span class="step">2</span> ¿Cómo viajás?</h2>
-          <div id="modos" class="modos"></div>
-        </section>
-
-        <!-- 3) ORIGEN -->
-        <section class="block">
-          <h2><span class="step">3</span> ¿Desde dónde salís?</h2>
-          <button id="btn-ubicacion" class="btn btn-ghost">📍 Usar mi ubicación</button>
-          <p class="hint" id="origen-estado">O hacé clic en el mapa para marcar tu punto de salida.</p>
-        </section>
-
-        <button id="btn-crear" class="btn btn-primary btn-block" disabled>
-          Crear rutas
-        </button>
-
-        <!-- RESULTADOS -->
-        <section id="resultados" class="block resultados hidden">
-          <h2>Rutas sugeridas</h2>
-          <p class="hint" id="resultados-hint"></p>
-          <div id="lista-rutas"></div>
-        </section>
-
-        <footer class="panel-footer">
-          <p>Mapa © OpenStreetMap · CARTO &nbsp;|&nbsp; Ruteo © Valhalla / OSM</p>
-        </footer>
+      <!-- Overlay de carga -->
+      <div id="loader" class="loader hidden">
+        <div class="spinner"></div>
+        <span id="loader-text">Calculando rutas…</span>
       </div>
-    </aside>
-
-    <!-- ======================= MAPA ======================= -->
-    <main id="map"></main>
-
-    <!-- Overlay de carga -->
-    <div id="loader" class="loader hidden">
-      <div class="spinner"></div>
-      <span id="loader-text">Calculando rutas…</span>
     </div>
-  </div>
 
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/app.js"></script>
-</body>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+  </body>
 </html>
