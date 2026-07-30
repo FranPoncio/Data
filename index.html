@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rutas Argentinas · Viajá a los mejores puntos turísticos</title>
-  <meta name="description" content="Planificá viajes a los puntos más turísticos de Argentina con las mejores rutas según tu ubicación y medio de transporte." />
+  <meta name="description" content="Planificá viajes a los puntos más turísticos de Argentina con las mejores rutas según tu ubicación, actividad y medio de transporte." />
 
   <!-- Leaflet (vendorizado localmente — no requiere CDN) -->
   <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
@@ -24,20 +24,27 @@
             <p>Viajá a los mejores puntos turísticos del país</p>
           </div>
         </div>
+        <button id="theme-toggle" class="theme-toggle" title="Cambiar tema claro/oscuro" aria-label="Cambiar tema">🌙</button>
       </header>
 
       <div class="panel-body">
+        <!-- FILTRO POR ACTIVIDAD -->
+        <section class="block">
+          <h2>¿Qué querés hacer?</h2>
+          <div id="chips-actividad" class="chips"></div>
+        </section>
+
         <!-- 1) DESTINO -->
         <section class="block">
           <h2><span class="step">1</span> ¿A dónde vas?</h2>
-          <label class="field">
-            <span>Localidad / punto turístico</span>
-            <select id="sel-localidad"></select>
-          </label>
-          <label class="field">
+          <div class="field">
+            <span>Localidad / región</span>
+            <div id="dd-localidad" class="dropdown"></div>
+          </div>
+          <div class="field">
             <span>Destino específico</span>
-            <select id="sel-destino"></select>
-          </label>
+            <div id="dd-destino" class="dropdown"></div>
+          </div>
         </section>
 
         <!-- 2) MODO -->
@@ -53,9 +60,7 @@
           <p class="hint" id="origen-estado">O hacé clic en el mapa para marcar tu punto de salida.</p>
         </section>
 
-        <button id="btn-crear" class="btn btn-primary btn-block" disabled>
-          Crear rutas
-        </button>
+        <button id="btn-crear" class="btn btn-primary btn-block" disabled>Crear rutas</button>
 
         <!-- RESULTADOS -->
         <section id="resultados" class="block resultados hidden">
@@ -65,7 +70,7 @@
         </section>
 
         <footer class="panel-footer">
-          <p>Mapa © OpenStreetMap · CARTO &nbsp;|&nbsp; Ruteo © Valhalla / OSM</p>
+          <p>Mapa © OpenStreetMap · CARTO &nbsp;|&nbsp; Ruteo © Valhalla / OSM<br />Precios y transporte son orientativos.</p>
         </footer>
       </div>
     </aside>

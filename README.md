@@ -7,15 +7,24 @@ calculando las mejores rutas según tu ubicación y tu medio de transporte.
 
 ## ✨ Qué hace
 
-Cumple los cinco requisitos del proyecto:
-
-1. **Menú de destino.** Elegís la **localidad** (agrupada por provincia) y el **punto turístico** exacto al que querés ir.
+1. **Menú de destino.** Elegís la **localidad / región** (agrupada por provincia) y el **punto turístico** exacto al que querés ir.
 2. **Rutas según tu ubicación, con prioridades.**
    - **Prioridad 1:** la ruta **más corta** desde tu punto de salida al destino.
    - **Prioridad 2:** una ruta **escénica** que pasa por otro punto turístico ubicado *de camino* entre la salida y la llegada.
 3. **Alternativas por medio de transporte.** Auto 🚗, moto 🏍️, bicicleta 🚲, monopatín 🛴, transporte público 🚌 o caminando 🚶. Cada modo recalcula distancia y tiempo con su propio perfil de ruteo.
-4. **Mapa con estilo propio.** Base de OpenStreetMap (tiles de CARTO) con un filtro de color propio + pines personalizados, para que se vea original.
-5. **Pines interactivos.** Al hacer clic en cualquier pin se abre una tarjeta con **foto** y una **breve reseña histórica** del lugar.
+4. **Mapa con estilo propio.** Base gris de OpenStreetMap (tiles CARTO Positron/Dark Matter según el tema) con filtro propio + pines personalizados.
+5. **Pines interactivos.** Al hacer clic en cualquier pin se abre una ficha con **foto**, **reseña histórica**, **precio de entrada** y cómo llegar en **transporte público**.
+
+### Además
+
+- 🎨 **Tema claro/oscuro** con botón que respeta la preferencia de tu sistema (se recuerda tu elección).
+- 🔤 **Tipografías modernas** (Fredoka + Nunito) vendorizadas localmente.
+- 🏷️ **Filtro por tipo de actividad**: naturaleza y miradores, trekking, museos, histórico, shopping y paseos/peatonal.
+- 🎫 **Precio de entrada** de cada lugar (o si es gratis) — *orientativo*.
+- 🚌 **Info de transporte público** para llegar a cada punto — *orientativa*.
+- 📚 **76 puntos turísticos** en 14 localidades/regiones, incluyendo los valles cordobeses de **Punilla** y **Calamuchita**.
+
+> ⚠ Los precios de entrada y la información de transporte son **orientativos**: Argentina tiene alta inflación y las líneas de colectivo cambian. Sirven como guía, no como dato oficial.
 
 ## 🗺️ Cómo funciona el ruteo
 
