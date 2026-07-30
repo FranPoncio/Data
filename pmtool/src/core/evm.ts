@@ -141,16 +141,39 @@ export function budgetAtCompletion(workPackages: readonly WorkPackage[]): number
 }
 
 /**
- * Fracción de valor planificado de un paquete a una fecha de corte, asumiendo
- * un reparto lineal del presupuesto entre inicio y fin planificados:
+ * Curva de avance planificado: mapea el tiempo transcurrido normalizado
+ * `t ∈ [0,1]` a la fracción de presupuesto que debería estar devengada.
+ * Debe cumplir `curve(0) = 0`, `curve(1) = 1` y ser monótona creciente.
+ */
+export type ProgressCurve = (t: number) => number;
+
+/** Curva lineal: el presupuesto se devenga a ritmo constante. */
+export const linearCurve: ProgressCurve = (t) => t;
+
+/**
+ * Curva S (smoothstep de Hermite: `3t² − 2t³`). Arranque lento, aceleración en
+ * el medio y desaceleración al final — el perfil típico de una obra o proyecto
+ * real. Es simétrica, con pendiente nula en ambos extremos y `curve(0.5) = 0.5`.
+ * Es la curva por defecto de PMTool para el time-phasing del PV.
+ */
+export const sCurve: ProgressCurve = (t) => t * t * (3 - 2 * t);
+
+/**
+ * Fracción de valor planificado de un paquete a una fecha de corte.
+ * El tiempo entre inicio y fin planificados se normaliza a `t ∈ [0,1]` y se
+ * pasa por `curve` (curva S por defecto):
  *  - 0 si la fecha de corte es anterior (o igual) al inicio planificado.
  *  - 1 si es posterior (o igual) al fin planificado.
- *  - interpolación lineal en el medio.
+ *  - `curve(t)` en el medio.
  *
  * Si inicio y fin coinciden (paquete "hito", duración cero), la fracción es 0
  * antes de esa fecha y 1 desde esa fecha en adelante.
  */
-export function plannedFraction(wp: WorkPackage, dataDate: string): number {
+export function plannedFraction(
+  wp: WorkPackage,
+  dataDate: string,
+  curve: ProgressCurve = sCurve
+): number {
   const start = Date.parse(wp.fechaInicioPlan);
   const end = Date.parse(wp.fechaFinPlan);
   const now = Date.parse(dataDate);
@@ -158,19 +181,21 @@ export function plannedFraction(wp: WorkPackage, dataDate: string): number {
   if (now <= start) return 0;
   if (now >= end) return 1;
   if (end === start) return now >= end ? 1 : 0;
-  return (now - start) / (end - start);
+  const t = (now - start) / (end - start);
+  return curve(t);
 }
 
 /**
  * Planned Value (BCWS) del conjunto a una fecha de corte:
- * Σ presupuesto_wp × fracciónPlanificada(wp, fecha).
+ * Σ presupuesto_wp × fracciónPlanificada(wp, fecha, curve).
  */
 export function plannedValue(
   workPackages: readonly WorkPackage[],
-  dataDate: string
+  dataDate: string,
+  curve: ProgressCurve = sCurve
 ): number {
   return workPackages.reduce(
-    (acc, wp) => acc + wp.presupuesto * plannedFraction(wp, dataDate),
+    (acc, wp) => acc + wp.presupuesto * plannedFraction(wp, dataDate, curve),
     0
   );
 }

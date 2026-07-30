@@ -8,8 +8,10 @@ import {
   earnedValue,
   estimateAtCompletion,
   estimateToComplete,
+  linearCurve,
   plannedFraction,
   plannedValue,
+  sCurve,
   schedulePerformanceIndex,
   scheduleVariance,
   tcpiToBac,
@@ -237,12 +239,38 @@ describe('derivación de curvas desde work packages y avances', () => {
     expect(budgetAtCompletion(packages)).toBe(1000);
   });
 
-  it('plannedFraction: 0 antes del inicio, 1 después del fin, lineal en medio', () => {
+  it('plannedFraction (curva S por defecto): 0 antes del inicio, 1 después del fin', () => {
     const single = packages[0]!;
     expect(plannedFraction(single, '2025-12-31')).toBe(0);
     expect(plannedFraction(single, '2027-01-01')).toBe(1);
-    // Ventana Jan 1 → Dec 31 = 364 días; Jul 2 está a 182 días ⇒ 182/364 = 0.5.
+    // Ventana Jan 1 → Dec 31 = 364 días; Jul 2 está a 182 días ⇒ t = 0.5.
+    // La curva S es simétrica: sCurve(0.5) = 0.5.
     expect(plannedFraction(single, '2026-07-02')).toBeCloseTo(0.5, 6);
+  });
+
+  it('curva S vs lineal: arranque más lento (t=0.25 ⇒ 0.156 < 0.25)', () => {
+    const single = packages[0]!;
+    // 2026-04-02 está a ~91 días ⇒ t ≈ 0.25.
+    // sCurve(0.25) = 0.25²·(3 − 0.5) = 0.15625; lineal daría 0.25.
+    const s = plannedFraction(single, '2026-04-02');
+    const l = plannedFraction(single, '2026-04-02', linearCurve);
+    expect(s).toBeCloseTo(0.156, 2);
+    expect(l).toBeGreaterThan(s);
+    expect(l).toBeCloseTo(0.25, 2);
+  });
+
+  it('sCurve y linearCurve cumplen los invariantes de una curva de avance', () => {
+    for (const curve of [sCurve, linearCurve]) {
+      expect(curve(0)).toBe(0);
+      expect(curve(1)).toBe(1);
+      // Monotonía en una malla.
+      let prev = -Infinity;
+      for (let t = 0; t <= 1.00001; t += 0.1) {
+        const v = curve(Math.min(t, 1));
+        expect(v).toBeGreaterThanOrEqual(prev);
+        prev = v;
+      }
+    }
   });
 
   it('plannedValue pondera presupuesto por fracción planificada', () => {

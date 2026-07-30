@@ -4,8 +4,9 @@ Aplicación web de gestión de proyectos cuyo diferencial es un **motor completo
 de Earned Value Management (EVM)**, configurable por tipo de proyecto (obra
 civil, industrial, TI, servicios).
 
-> Estado: en construcción. Esta primera etapa incluye el scaffolding del
-> proyecto y el motor EVM con sus tests. La interfaz viene después.
+> Estado: en construcción. Incluye el scaffolding, el motor EVM con tests, y
+> una **maqueta** del tablero con datos de ejemplo. Falta la persistencia
+> (Dexie) y el estado (Zustand) sobre datos reales.
 
 ## Stack
 
@@ -20,9 +21,11 @@ pmtool/
 │  │  ├─ types.ts    Modelo de datos + tipos del motor EVM
 │  │  ├─ evm.ts      Motor EVM (funciones puras)
 │  │  └─ evm.test.ts Tests del motor
+│  ├─ analytics/     Análisis derivado (estado, exposición, decisiones)
+│  ├─ fixtures/      Datos de ejemplo para la maqueta
+│  ├─ ui/            Interfaz (tablero + componentes)
 │  ├─ db/            Persistencia con Dexie (IndexedDB)   [pendiente]
 │  ├─ store/         Estado con Zustand                    [pendiente]
-│  ├─ ui/            Interfaz                               [pendiente]
 │  └─ test/setup.ts  Setup de testing-library
 ├─ tailwind.config.ts  Tokens de paleta y tipografías
 └─ vite.config.ts      Vite + Vitest
@@ -50,7 +53,25 @@ Funciones puras que calculan, a una fecha de corte:
 `Infinity` ni `NaN`). `null` significa "sin información suficiente todavía".
 
 Las tres curvas (PV, EV, AC) se derivan del modelo de datos con
-`plannedValue`, `earnedValue` y `actualCost`; `computeEvm()` agrega todo.
+`plannedValue`, `earnedValue` y `actualCost`; `computeEvm()` agrega todo. El
+time-phasing del PV usa una **curva S** (smoothstep de Hermite, `3t²−2t³`) por
+defecto — arranque lento, aceleración y desaceleración —, intercambiable por
+`linearCurve` u otra `ProgressCurve`.
+
+## Maqueta del tablero (`src/ui`)
+
+Un tablero de ejemplo (proyecto de gasoducto) que materializa las reglas de
+diseño:
+
+- Cada pantalla **abre con una conclusión escrita**, no con gráficos.
+- **Ningún número absoluto sin su comparación** contra plan (SPI/CPI vs 1.00,
+  avance vs plan, EAC vs BAC, etc.).
+- **Sin donuts ni gauges**: sólo texto, tablas y una curva S de líneas.
+- El panel **"Requiere decisión"** va arriba, ordenado por **exposición**
+  económica, con el **motivo explícito** de cada ítem.
+- Paleta y tipografías del brief (Archivo / IBM Plex Mono, self-hosted).
+
+Correr `npm run dev` y abrir el tablero.
 
 ## Comandos
 
