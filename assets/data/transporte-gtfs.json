@@ -175,5 +175,298 @@
     "sources": [
       "subte-baires"
     ]
+  },
+  "museo-ciencias": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Pájaro Blanco",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 427,
+    "nearestStop": "Terminal de Ómnibus de Córdoba",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "carlos-paz": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Villa Carlos Paz",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "cosquin": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Cosquín",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "la-falda-eden": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "La Falda",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "cristo-la-cumbre": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "La Cumbre",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "los-cocos": {
+    "lines": [
+      "Ciudad de Córdoba"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Los Cocos",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "villa-giardino": {
+    "lines": [
+      "Ciudad de Córdoba"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Villa Giardino",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "bialet-masse": {
+    "lines": [
+      "Ciudad de Córdoba"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Bialet Massé",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "valle-hermoso": {
+    "lines": [
+      "Ciudad de Córdoba"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Valle Hermoso",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "huerta-grande": {
+    "lines": [
+      "Ciudad de Córdoba"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Huerta Grande",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "rio-cosquin": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 590,
+    "nearestStop": "Cosquín",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "capilla-centro": {
+    "lines": [
+      "Ciudad de Córdoba",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Capilla del Monte",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "dumesnil": {
+    "lines": [
+      "Ciudad de Córdoba"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Santa María de Punilla",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "villa-gral-belgrano": {
+    "lines": [
+      "Pájaro Blanco",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Villa General Belgrano",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "santa-rosa": {
+    "lines": [
+      "Pájaro Blanco",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Santa Rosa de Calamuchita",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "embalse": {
+    "lines": [
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Embalse",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "villa-del-dique": {
+    "lines": [
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 0,
+    "nearestStop": "Villa del Dique",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "capilla-vieja-vgb": {
+    "lines": [
+      "Pájaro Blanco",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 160,
+    "nearestStop": "Villa General Belgrano",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "cerveceria-vgb": {
+    "lines": [
+      "Pájaro Blanco",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 72,
+    "nearestStop": "Villa General Belgrano",
+    "sources": [
+      "interurbano-cordoba"
+    ]
+  },
+  "balneario-santa-rosa": {
+    "lines": [
+      "Pájaro Blanco",
+      "Sarmiento"
+    ],
+    "modes": [
+      "micro"
+    ],
+    "stops": 1,
+    "nearestM": 206,
+    "nearestStop": "Santa Rosa de Calamuchita",
+    "sources": [
+      "interurbano-cordoba"
+    ]
   }
 }

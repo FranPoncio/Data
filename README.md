@@ -38,7 +38,9 @@ calculando las mejores rutas según tu ubicación y tu medio de transporte.
 
 Además del texto orientativo, la app muestra **transporte público derivado de datos GTFS oficiales**: para cada punto turístico calcula las **paradas y líneas reales** que pasan cerca (dentro de un radio configurable) y las muestra en la ficha (ej.: _"subte — líneas B, C · parada «Florida» a 104 m"_).
 
-- El repo incluye un feed GTFS real del **Subte de Buenos Aires** en `data/gtfs/subte-baires/`, ya procesado en `assets/data/transporte-gtfs.json`.
+- El repo incluye feeds GTFS ya procesados en `assets/data/transporte-gtfs.json`:
+  - **Subte de Buenos Aires** (`data/gtfs/subte-baires/`) — líneas de subte cercanas a los puntos de CABA.
+  - **Interurbano de Córdoba** (`data/gtfs/interurbano-cordoba/`) — micros de larga distancia de los corredores **Punilla** (Córdoba → Carlos Paz, Cosquín, La Falda, La Cumbre, Capilla del Monte) y **Calamuchita** (Córdoba → Alta Gracia, Villa General Belgrano, Santa Rosa, Embalse), con las empresas que los conectan. Las paradas se ubican en el centro de cada localidad y los horarios son de relleno (no oficiales).
 - El pipeline `scripts/build-gtfs.mjs` ingiere **cualquier feed GTFS** (carpetas locales o zips remotos) y regenera ese JSON:
 
   ```bash

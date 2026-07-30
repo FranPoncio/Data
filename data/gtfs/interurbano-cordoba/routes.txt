@@ -1,0 +1,5 @@
+route_id,agency_id,route_short_name,route_long_name,route_type,route_color
+PUN1,inter_cba,Ciudad de Córdoba,Córdoba – Valle de Punilla (Capilla del Monte),200,1B7A3D
+PUN2,inter_cba,Sarmiento,Córdoba – Valle de Punilla (La Cumbre - expreso),200,C0392B
+CAL1,inter_cba,Sarmiento,Córdoba – Valle de Calamuchita (Embalse),200,C0392B
+CAL2,inter_cba,Pájaro Blanco,Córdoba – Calamuchita (Santa Rosa),200,2E86C1

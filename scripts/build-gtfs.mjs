@@ -86,6 +86,7 @@ function modoDeRouteType(t) {
   if (n === 4) return "ferry";
   if (n === 5 || n === 6 || n === 7) return "cable";
   if (n >= 100 && n < 200) return "tren";
+  if (n >= 200 && n < 300) return "micro"; // larga distancia / interurbano (Coach)
   if (n >= 700 && n < 800) return "colectivo";
   if (n >= 900 && n < 1000) return "tranvía";
   return "transporte";
