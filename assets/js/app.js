@@ -65,10 +65,11 @@ function initMapa() {
   map.on("click", (e) => setOrigen([e.latlng.lat, e.latlng.lng], "Punto marcado en el mapa"));
 }
 
-function iconoPin(tipo, emoji) {
+function iconoPin({ tipo = "", emoji = "•", color = null }) {
+  const style = color ? ` style="background:${color}"` : "";
   return L.divIcon({
     className: "",
-    html: `<div class="pin ${tipo}"><div class="pin-body"><span>${emoji}</span></div></div>`,
+    html: `<div class="pin ${tipo}"><div class="pin-body"${style}><span>${emoji}</span></div></div>`,
     iconSize: [30, 30],
     iconAnchor: [15, 30],
     popupAnchor: [0, -30],
@@ -108,6 +109,31 @@ function transporteHTML(p) {
       <span class="poi-gtfs">· parada «${g.nearestStop}» a ${g.nearestM} m</span></span></div>`;
   }
   return `<div class="poi-row"><span class="ic">🚌</span><span><b>Transporte público:</b> ${p.transporte}</span></div>`;
+}
+
+// Popup del pin de eventos: foto, sinopsis y enlace a la agenda oficial.
+function popupEventos(ev, loc) {
+  const cont = document.createElement("div");
+  cont.className = "poi";
+  cont.innerHTML = `
+    <img class="poi-foto" src="${ev.img}" alt="${ev.nombre}" />
+    <div class="poi-info">
+      <div class="poi-badges">
+        <span class="poi-badge" style="background:#e11d48">🎟️ Eventos y agenda</span>
+      </div>
+      <h3>${ev.nombre}</h3>
+      <p>${ev.sinopsis}</p>
+      <a class="poi-link" href="${ev.url}" target="_blank" rel="noopener noreferrer">🔗 Agenda oficial de eventos</a>
+      <div class="poi-loc">📍 ${loc.nombre}${loc.provincia ? " · " + loc.provincia : ""}</div>
+    </div>`;
+  const img = cont.querySelector("img");
+  img.addEventListener("error", () => {
+    const ph = document.createElement("div");
+    ph.className = "poi-foto-fallback";
+    ph.textContent = ev.nombre;
+    img.replaceWith(ph);
+  });
+  return cont;
 }
 
 function popupPunto(p) {
@@ -155,18 +181,35 @@ function dibujarPines() {
 
   puntosVisibles().forEach((p) => {
     const esDestino = estado.destino && p.id === estado.destino.id;
+    const act = ACTIVIDAD_POR_ID[p.actividad];
     const punto = {
       ...p,
       localidadNombre: estado.localidad.nombre,
       provincia: estado.localidad.provincia,
     };
+    // El pin toma el color de su actividad (mismo color que el chip del sector).
     const m = L.marker([p.lat, p.lng], {
-      icon: iconoPin(esDestino ? "destino" : "", esDestino ? "★" : "•"),
+      icon: iconoPin({
+        tipo: esDestino ? "destino" : "",
+        emoji: esDestino ? "★" : act.icon,
+        color: act.color,
+      }),
       zIndexOffset: esDestino ? 1000 : 0,
     });
     m.bindPopup(popupPunto(punto), { closeButton: true });
     capaPines.addLayer(m);
   });
+
+  // Pin de eventos en el centro de la localidad (agenda oficial).
+  if (estado.localidad.eventos) {
+    const ev = estado.localidad.eventos;
+    const m = L.marker([ev.lat, ev.lng], {
+      icon: iconoPin({ tipo: "evento", emoji: "🎟️", color: "#e11d48" }),
+      zIndexOffset: 900,
+    });
+    m.bindPopup(popupEventos(ev, estado.localidad), { closeButton: true });
+    capaPines.addLayer(m);
+  }
 }
 
 // =====================================================================
@@ -178,7 +221,7 @@ function setOrigen(coords, etiqueta) {
     `✔ Salida: ${etiqueta} (${coords[0].toFixed(4)}, ${coords[1].toFixed(4)})`;
   if (marcadorOrigen) capaPines.removeLayer(marcadorOrigen);
   marcadorOrigen = L.marker(coords, {
-    icon: iconoPin("origen", "🧍"),
+    icon: iconoPin({ tipo: "origen", emoji: "🧍" }),
     zIndexOffset: 1200,
   }).bindPopup("<b>Tu punto de salida</b>");
   capaPines.addLayer(marcadorOrigen);

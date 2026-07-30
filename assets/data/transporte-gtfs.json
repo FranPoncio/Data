@@ -32,6 +32,40 @@
       "subte-baires"
     ]
   },
+  "plaza-mayo": {
+    "lines": [
+      "A",
+      "C",
+      "D",
+      "E"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 5,
+    "nearestM": 124,
+    "nearestStop": "Catedral",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "catedral-bsas": {
+    "lines": [
+      "A",
+      "C",
+      "D",
+      "E"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 6,
+    "nearestM": 64,
+    "nearestStop": "Catedral",
+    "sources": [
+      "subte-baires"
+    ]
+  },
   "teatro-colon": {
     "lines": [
       "B",
@@ -73,6 +107,71 @@
     "stops": 2,
     "nearestM": 319,
     "nearestStop": "Palermo",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "congreso": {
+    "lines": [
+      "A",
+      "B",
+      "D"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 3,
+    "nearestM": 512,
+    "nearestStop": "Callao",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "cafe-tortoni": {
+    "lines": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 9,
+    "nearestM": 0,
+    "nearestStop": "Avenida de Mayo",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "cabildo": {
+    "lines": [
+      "A",
+      "C",
+      "D",
+      "E"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 7,
+    "nearestM": 44,
+    "nearestStop": "Perú",
+    "sources": [
+      "subte-baires"
+    ]
+  },
+  "teatro-gran-splendid": {
+    "lines": [
+      "D"
+    ],
+    "modes": [
+      "subte"
+    ],
+    "stops": 1,
+    "nearestM": 520,
+    "nearestStop": "Facultad de Medicina",
     "sources": [
       "subte-baires"
     ]

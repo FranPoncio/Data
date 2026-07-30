@@ -614,10 +614,20 @@ body {
 }
 .pin-body span {
   transform: rotate(45deg);
-  font-size: 14px;
+  font-size: 13px;
 }
+/* Destino: mantiene el color de su actividad, resaltado con aro y tamaño. */
 .pin.destino .pin-body {
-  background: var(--sol);
+  border-width: 3px;
+  transform: rotate(-45deg) scale(1.18);
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.55),
+    0 3px 10px rgba(0, 0, 0, 0.5);
+}
+.pin.evento .pin-body {
+  box-shadow:
+    0 0 0 3px rgba(225, 29, 72, 0.35),
+    0 3px 8px rgba(0, 0, 0, 0.45);
 }
 .pin.origen .pin-body {
   background: var(--ok);
@@ -724,6 +734,23 @@ body {
 .poi-gtfs {
   color: var(--ok);
   font-weight: 700;
+}
+.poi-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 9px 13px;
+  background: #e11d48;
+  color: #fff;
+  border-radius: 10px;
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.poi-link:hover {
+  background: #be123c;
+  transform: translateY(-1px);
 }
 .poi-loc {
   font-size: 11.5px;
