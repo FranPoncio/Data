@@ -66,9 +66,9 @@ export function SCurveChart({
   const acNow = last?.ac ?? 0;
 
   const series = [
-    { key: 'pv', label: 'PV · planificado', value: pvNow, color: '#7EA5B0' },
-    { key: 'ev', label: 'EV · ganado', value: evNow, color: '#E7EEF0' },
-    { key: 'ac', label: 'AC · real', value: acNow, color: '#E8A33D' },
+    { key: 'pv', label: 'PV · planificado', value: pvNow, color: '#256B7E' },
+    { key: 'ev', label: 'EV · ganado', value: evNow, color: '#10222A' },
+    { key: 'ac', label: 'AC · real', value: acNow, color: '#B07314' },
   ];
 
   // Reparto vertical de las etiquetas por su altura real, evitando solapes.
@@ -87,42 +87,42 @@ export function SCurveChart({
       <div className="px-3 py-4">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Curva S del proyecto">
           {/* BAC (tope) y baseline. */}
-          <line x1={PAD.left} y1={y(project.bac)} x2={PAD.left + plotW} y2={y(project.bac)} stroke="#1E4351" strokeDasharray="3 4" />
-          <text x={PAD.left} y={y(project.bac) - 6} className="num" fontSize="11" fill="#7EA5B0">
+          <line x1={PAD.left} y1={y(project.bac)} x2={PAD.left + plotW} y2={y(project.bac)} stroke="#C3CDD4" strokeDasharray="3 4" />
+          <text x={PAD.left} y={y(project.bac) - 6} className="num" fontSize="11" fill="#256B7E">
             BAC {money(project.bac, cur)}
           </text>
-          <line x1={PAD.left} y1={y(0)} x2={PAD.left + plotW} y2={y(0)} stroke="#1E4351" />
+          <line x1={PAD.left} y1={y(0)} x2={PAD.left + plotW} y2={y(0)} stroke="#C3CDD4" />
 
           {/* Fecha de corte. */}
-          <line x1={nowX} y1={PAD.top} x2={nowX} y2={y(0)} stroke="#1E4351" />
-          <text x={nowX} y={H - PAD.bottom + 20} fontSize="11" fill="#7EA5B0" textAnchor="middle">
+          <line x1={nowX} y1={PAD.top} x2={nowX} y2={y(0)} stroke="#C3CDD4" />
+          <text x={nowX} y={H - PAD.bottom + 20} fontSize="11" fill="#58696F" textAnchor="middle">
             corte
           </text>
 
           {/* PV (baseline S), EV y AC. */}
-          <path d={pvPath} fill="none" stroke="#7EA5B0" strokeWidth="2" />
-          <path d={acPath} fill="none" stroke="#E8A33D" strokeWidth="2" />
-          <path d={evPath} fill="none" stroke="#E7EEF0" strokeWidth="2" />
+          <path d={pvPath} fill="none" stroke="#256B7E" strokeWidth="2" strokeDasharray="5 3" />
+          <path d={acPath} fill="none" stroke="#B07314" strokeWidth="2" />
+          <path d={evPath} fill="none" stroke="#10222A" strokeWidth="2" />
 
           {/* Marcadores en cada corte histórico. */}
           {history.map((p) => (
             <g key={p.date}>
-              <circle cx={x(tOf(p.date))} cy={y(p.ac)} r="2.6" fill="#E8A33D" />
-              <circle cx={x(tOf(p.date))} cy={y(p.ev)} r="2.6" fill="#E7EEF0" />
+              <circle cx={x(tOf(p.date))} cy={y(p.ac)} r="2.6" fill="#B07314" />
+              <circle cx={x(tOf(p.date))} cy={y(p.ev)} r="2.6" fill="#10222A" />
             </g>
           ))}
 
           {/* Puntos y etiquetas a la fecha de corte. */}
           {placed.map((s) => (
             <g key={s.key}>
-              <path d={`M${nowX},${s.dotY} L${labelX - 6},${s.labelY - 3}`} fill="none" stroke="#1E4351" strokeWidth="1" />
-              <circle cx={nowX} cy={s.dotY} r="4.5" fill={s.color} stroke="#102A33" strokeWidth="2" />
+              <path d={`M${nowX},${s.dotY} L${labelX - 6},${s.labelY - 3}`} fill="none" stroke="#C3CDD4" strokeWidth="1" />
+              <circle cx={nowX} cy={s.dotY} r="4.5" fill={s.color} stroke="#FFFFFF" strokeWidth="2" />
               <text x={labelX} y={s.labelY - 3} fontSize="12" fill={s.color}>
                 <tspan className="num" fontWeight="600">
                   {money(s.value, cur)}
                 </tspan>
               </text>
-              <text x={labelX} y={s.labelY + 10} fontSize="10" fill="#7EA5B0">
+              <text x={labelX} y={s.labelY + 10} fontSize="10" fill="#58696F">
                 {s.label}
               </text>
             </g>

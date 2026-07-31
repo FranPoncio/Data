@@ -87,7 +87,7 @@ export function ProgressForm({
             <tbody className="divide-y divide-line/60">
               {workPackages.map((wp) => (
                 <tr key={wp.id}>
-                  <td className="py-2 pr-4 text-[#E7EEF0]">{wp.nombre}</td>
+                  <td className="py-2 pr-4 text-ink">{wp.nombre}</td>
                   <td className="py-2 pr-4">
                     <NumberInput
                       className="text-right"

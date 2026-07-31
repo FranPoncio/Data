@@ -42,7 +42,7 @@ export function DecisionPanel({
                 <div className="w-1 shrink-0 rounded-full" style={{ backgroundColor: s.color }} />
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
-                    <h3 className="text-[15px] font-600 text-[#E7EEF0]">{item.wpNombre}</h3>
+                    <h3 className="text-[15px] font-600 text-ink">{item.wpNombre}</h3>
                     <div className="flex items-center gap-3">
                       <StatusPill status={item.status} />
                       <span className="text-right">
@@ -55,7 +55,7 @@ export function DecisionPanel({
                       </span>
                     </div>
                   </div>
-                  <p className="mt-1.5 text-[13px] leading-relaxed text-[#B7C7CC]">{item.motivo}</p>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-muted">{item.motivo}</p>
                   <p className="mt-1 text-[12px] text-tech/80">Responsable: {item.responsable}</p>
                 </div>
               </li>

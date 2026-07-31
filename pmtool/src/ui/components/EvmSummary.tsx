@@ -67,8 +67,8 @@ export function EvmSummary({ evm, currency }: { evm: EvmResult; currency: string
             <tbody className="divide-y divide-line/60">
               {(['cpi', 'budgetRate', 'cpiSpi'] as const).map((m) => (
                 <tr key={m}>
-                  <td className="py-1.5 pr-4 text-[#B7C7CC]">{EAC_LABEL[m]}</td>
-                  <td className="num py-1.5 pr-4 text-right text-[#E7EEF0]">
+                  <td className="py-1.5 pr-4 text-muted">{EAC_LABEL[m]}</td>
+                  <td className="num py-1.5 pr-4 text-right text-ink">
                     {evm.eac[m] === null ? '—' : money(evm.eac[m]!, currency)}
                   </td>
                   <td className="num py-1.5 pr-4 text-right text-tech">

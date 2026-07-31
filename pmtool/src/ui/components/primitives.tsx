@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type { Status } from '../../analytics/status';
 import { STATUS_STYLE } from '../statusColor';
 
-/** Panel base: superficie #102A33 con borde de línea. */
+/** Panel base: tarjeta blanca con borde nítido y sombra sutil. */
 export function Panel({
   children,
   className = '',
@@ -11,19 +11,23 @@ export function Panel({
   className?: string;
 }) {
   return (
-    <section className={`rounded-lg border border-line bg-panel ${className}`}>{children}</section>
+    <section
+      className={`rounded-md border border-line bg-panel shadow-[0_1px_2px_rgba(16,34,42,0.04)] ${className}`}
+    >
+      {children}
+    </section>
   );
 }
 
-/** Encabezado de sección: rótulo chico en versalitas + subtítulo opcional. */
+/** Encabezado de sección con banda gris tipo planilla. */
 export function SectionHead({ eyebrow, title, aside }: { eyebrow: string; title: string; aside?: ReactNode }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 border-b border-line px-5 py-3">
+    <div className="flex items-baseline justify-between gap-4 rounded-t-md border-b border-line bg-bg/70 px-5 py-3">
       <div>
         <div className="text-[11px] font-600 uppercase tracking-[0.14em] text-tech">{eyebrow}</div>
-        <h2 className="text-[15px] font-600 text-[#E7EEF0]">{title}</h2>
+        <h2 className="text-[15px] font-600 text-ink">{title}</h2>
       </div>
-      {aside ? <div className="num text-sm text-tech">{aside}</div> : null}
+      {aside ? <div className="num text-sm text-muted">{aside}</div> : null}
     </div>
   );
 }
@@ -64,7 +68,7 @@ export function MetricVsPlan({
   return (
     <div className="px-5 py-4">
       <div className="text-[11px] font-600 uppercase tracking-[0.12em] text-tech">{label}</div>
-      <div className="num mt-1.5 text-2xl font-500 text-[#E7EEF0]">{real}</div>
+      <div className="num mt-1.5 text-2xl font-500 text-ink">{real}</div>
       <div className="num mt-0.5 text-[13px] text-tech">
         plan {plan} · <span className={s.text}>{delta}</span>
       </div>

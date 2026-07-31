@@ -9,14 +9,14 @@ function ProgressVsPlan({ real, plan }: { real: number; plan: number }) {
   const p = Math.max(0, Math.min(1, plan));
   const behind = r < p - 0.02;
   return (
-    <div className="relative h-2 w-28 rounded-full bg-bg">
+    <div className="relative h-2 w-28 rounded-full bg-bg ring-1 ring-inset ring-line">
       <div
         className="absolute inset-y-0 left-0 rounded-full"
-        style={{ width: `${r * 100}%`, backgroundColor: behind ? '#C4623F' : '#5D9E82' }}
+        style={{ width: `${r * 100}%`, backgroundColor: behind ? '#BC4327' : '#27795A' }}
       />
       {/* Marca de plan. */}
       <div
-        className="absolute inset-y-[-2px] w-[2px] bg-[#E7EEF0]"
+        className="absolute inset-y-[-2px] w-[2px] bg-ink"
         style={{ left: `calc(${p * 100}% - 1px)` }}
         title={`Plan: ${pct(plan)}`}
       />
@@ -79,7 +79,7 @@ export function WorkPackageTable({
               return (
                 <tr key={a.wp.id} className="align-middle">
                   <td className="px-5 py-3">
-                    <div className="font-500 text-[#E7EEF0]">{a.wp.nombre}</div>
+                    <div className="font-500 text-ink">{a.wp.nombre}</div>
                     <div className="text-[12px] text-tech/80">{a.wp.responsable}</div>
                   </td>
                   <td className="py-3 pr-4">
@@ -101,10 +101,10 @@ export function WorkPackageTable({
                       <span className="text-tech/60">—</span>
                     ) : (
                       <span className="inline-flex flex-col items-end leading-tight">
-                        <span className="text-[#E7EEF0]">{money(a.evm.eac.cpi, currency)}</span>
+                        <span className="text-ink">{money(a.evm.eac.cpi, currency)}</span>
                         <span
                           className="text-[11px]"
-                          style={{ color: vac !== null && vac < 0 ? '#C4623F' : '#7EA5B0' }}
+                          style={{ color: vac !== null && vac < 0 ? '#BC4327' : '#58696F' }}
                         >
                           {vac === null ? '' : vac < 0 ? `+${money(-vac, currency)}` : 'en presupuesto'}
                         </span>

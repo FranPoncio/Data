@@ -74,10 +74,10 @@ export function DataModal({
               {workPackages.map((wp) => (
                 <tr key={wp.id}>
                   <td className="py-2 pr-4">
-                    <div className="font-500 text-[#E7EEF0]">{wp.nombre}</div>
+                    <div className="font-500 text-ink">{wp.nombre}</div>
                     <div className="text-[12px] text-tech/80">{wp.responsable || '—'}</div>
                   </td>
-                  <td className="num py-2 pr-4 text-right text-[#E7EEF0]">
+                  <td className="num py-2 pr-4 text-right text-ink">
                     {money(wp.presupuesto, project.moneda)}
                   </td>
                   <td className="num py-2 pr-4 text-[12px] text-tech">

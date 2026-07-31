@@ -71,7 +71,9 @@ diseño:
 - **Sin donuts ni gauges**: sólo texto, tablas y una curva S de líneas.
 - El panel **"Requiere decisión"** va arriba, ordenado por **exposición**
   económica, con el **motivo explícito** de cada ítem.
-- Paleta y tipografías del brief (Archivo / IBM Plex Mono, self-hosted).
+- Tema claro, sobrio y de alta densidad (aire de planilla de control):
+  Inter para interfaz e IBM Plex Mono para cifras (self-hosted); acentos con
+  semántica fija (ámbar = atención, rojo = desvío, verde = dentro de plan).
 
 Correr `npm run dev` y abrir el tablero.
 

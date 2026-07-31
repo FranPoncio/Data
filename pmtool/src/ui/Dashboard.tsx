@@ -125,7 +125,7 @@ function ProjectDashboard({
     <>
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-[22px] font-700 leading-tight text-[#E7EEF0]">{project.nombre}</h1>
+          <h1 className="text-[22px] font-700 leading-tight text-ink">{project.nombre}</h1>
           <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] text-tech">
             <span>{TIPO_LABEL[project.tipo]}</span>
             <span className="text-tech/40">·</span>
@@ -141,9 +141,9 @@ function ProjectDashboard({
 
       {/* Regla de diseño: la pantalla abre con una conclusión escrita. */}
       <section className="mt-6 max-w-3xl">
-        <h2 className="text-lg font-600 leading-snug text-[#E7EEF0]">{conclusion.titular}</h2>
+        <h2 className="text-lg font-600 leading-snug text-ink">{conclusion.titular}</h2>
         {conclusion.parrafos.map((p, i) => (
-          <p key={i} className="mt-2 text-[14px] leading-relaxed text-[#B7C7CC]">
+          <p key={i} className="mt-2 text-[14px] leading-relaxed text-muted">
             {p}
           </p>
         ))}
@@ -175,7 +175,7 @@ function ProjectDashboard({
       <footer className="mt-8 border-t border-line pt-4 text-[12px] text-tech/70">
         Datos persistidos localmente (IndexedDB). El motor de cálculo vive en{' '}
         <span className="num">src/core/evm.ts</span> y está cubierto por tests.{' '}
-        <button className="text-tech underline hover:text-[#E7EEF0]" onClick={onLoadCut}>
+        <button className="text-accent underline hover:text-ink" onClick={onLoadCut}>
           Cargar un corte
         </button>
         .
@@ -187,7 +187,7 @@ function ProjectDashboard({
 function EmptyState({ hasProject, onNew }: { hasProject: boolean; onNew: () => void }) {
   return (
     <div className="mt-10 rounded-lg border border-dashed border-line bg-panel px-6 py-12 text-center">
-      <h2 className="text-lg font-600 text-[#E7EEF0]">
+      <h2 className="text-lg font-600 text-ink">
         {hasProject ? 'Proyecto sin fecha de corte' : 'No hay proyectos todavía'}
       </h2>
       <p className="mx-auto mt-2 max-w-md text-[14px] text-tech">

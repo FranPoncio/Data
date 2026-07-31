@@ -21,18 +21,18 @@ export function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/60 p-4 py-10"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-ink/40 p-4 py-10"
       onMouseDown={onClose}
     >
       <div
-        className={`w-full ${wide ? 'max-w-3xl' : 'max-w-lg'} rounded-lg border border-line bg-panel shadow-xl`}
+        className={`w-full ${wide ? 'max-w-3xl' : 'max-w-lg'} rounded-md border border-line bg-panel shadow-xl`}
         onMouseDown={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-line px-5 py-3">
-          <h2 className="text-[15px] font-600 text-[#E7EEF0]">{title}</h2>
+          <h2 className="text-[15px] font-600 text-ink">{title}</h2>
           <button
             onClick={onClose}
-            className="rounded px-2 py-0.5 text-tech hover:bg-line hover:text-[#E7EEF0]"
+            className="rounded px-2 py-0.5 text-tech hover:bg-line hover:text-ink"
             aria-label="Cerrar"
           >
             ✕

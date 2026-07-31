@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 const inputCls =
-  'w-full rounded-md border border-line bg-bg px-3 py-2 text-[14px] text-[#E7EEF0] outline-none focus:border-tech';
+  'w-full rounded-md border border-line bg-white px-3 py-2 text-[14px] text-ink outline-none focus:border-accent focus:ring-1 focus:ring-accent';
 
 export function Field({ label, children, hint }: { label: string; children: ReactNode; hint?: string }) {
   return (
@@ -31,8 +31,8 @@ export function Button({
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'ghost' | 'danger' }) {
   const base = 'rounded-md px-3 py-1.5 text-[13px] font-500 transition-colors disabled:opacity-40';
   const styles = {
-    primary: 'bg-tech text-bg hover:bg-tech/90',
-    ghost: 'border border-line text-tech hover:bg-line hover:text-[#E7EEF0]',
+    primary: 'bg-accent text-white hover:bg-accent/90',
+    ghost: 'border border-line bg-white text-ink hover:bg-bg',
     danger: 'border border-deviation/50 text-deviation hover:bg-deviation/10',
   } as const;
   return <button {...props} className={`${base} ${styles[variant]} ${props.className ?? ''}`} />;
