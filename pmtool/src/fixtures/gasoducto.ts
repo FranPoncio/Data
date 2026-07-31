@@ -95,26 +95,34 @@ export const workPackages: WorkPackage[] = [
   },
 ];
 
-/** Avance vigente por paquete a la fecha de corte. */
+/**
+ * Estado final de cada paquete a la fecha de corte (avance físico y costo real
+ * acumulado). Es la "foto" del último corte; el seed genera la historia de
+ * cortes anteriores rampeando hacia estos valores.
+ * Los paquetes que aún no arrancaron (scada, pruebas) no figuran → avance 0.
+ */
+export const finalProgress: ReadonlyArray<{
+  wpId: string;
+  avanceFisico: number;
+  costoRealAcum: number;
+}> = [
+  { wpId: 'wp-ing', avanceFisico: 1.0, costoRealAcum: 910_000 }, // terminado, sobrecosto leve
+  { wpId: 'wp-adq', avanceFisico: 0.78, costoRealAcum: 3_150_000 }, // en plan
+  { wpId: 'wp-civ', avanceFisico: 0.42, costoRealAcum: 1_650_000 }, // sobrecosto
+  { wpId: 'wp-duc', avanceFisico: 0.35, costoRealAcum: 2_950_000 }, // atrasado y con sobrecosto
+  { wpId: 'wp-mon', avanceFisico: 0.12, costoRealAcum: 780_000 }, // recién arranca
+];
+
+/** Avance vigente por paquete a la fecha de corte (foto final). */
 export const progressByWp: ReadonlyMap<string, ProgressEntry> = new Map(
-  (
-    [
-      // id WP,        % avance, costo real acum
-      ['wp-ing', 1.0, 910_000], // terminado, sobrecosto leve
-      ['wp-adq', 0.78, 3_150_000], // en plan, apenas mejor en costo
-      ['wp-civ', 0.42, 1_650_000], // sobrecosto
-      ['wp-duc', 0.35, 2_950_000], // atrasado y con sobrecosto — el peor
-      ['wp-mon', 0.12, 780_000], // recién arranca, ya sobre costo
-      // wp-scada y wp-pru todavía no arrancan → sin reporte (avance 0, costo 0)
-    ] as const
-  ).map(([id, avanceFisico, costoRealAcum]) => [
-    id,
+  finalProgress.map((p) => [
+    p.wpId,
     {
-      id: `${id}-pe`,
-      workPackageId: id,
+      id: `${p.wpId}-pe`,
+      workPackageId: p.wpId,
       fechaCorte: DATA_DATE,
-      avanceFisico,
-      costoRealAcum,
+      avanceFisico: p.avanceFisico,
+      costoRealAcum: p.costoRealAcum,
     } satisfies ProgressEntry,
   ])
 );

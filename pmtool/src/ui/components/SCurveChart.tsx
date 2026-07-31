@@ -1,11 +1,12 @@
+import type { CurvePoint } from '../../analytics/resolve';
 import { plannedValue, sCurve } from '../../core/evm';
-import type { EvmResult, Project, WorkPackage } from '../../core/types';
+import type { Project, WorkPackage } from '../../core/types';
 import { money } from '../format';
 import { Panel, SectionHead } from './primitives';
 
 const W = 760;
-const H = 280;
-const PAD = { top: 24, right: 120, bottom: 34, left: 16 };
+const H = 300;
+const PAD = { top: 24, right: 128, bottom: 40, left: 16 };
 
 function isoAtFraction(startIso: string, endIso: string, t: number): string {
   const start = Date.parse(startIso);
@@ -14,49 +15,60 @@ function isoAtFraction(startIso: string, endIso: string, t: number): string {
 }
 
 /**
- * Curva S del proyecto: la línea de valor planificado (PV) acumulado a lo largo
- * del cronograma, con los puntos de EV (ganado) y AC (real) marcados a la fecha
- * de corte. Líneas y puntos, nunca gauges ni donuts. La identidad de cada serie
- * va por etiqueta directa, no solo por color.
+ * Curva S del proyecto: PV planificado a lo largo de todo el cronograma, más
+ * las curvas reales de EV (ganado) y AC (real) construidas con la historia de
+ * cortes hasta la fecha seleccionada. Líneas y puntos, nunca gauges ni donuts;
+ * la identidad de cada serie va por etiqueta directa.
  */
 export function SCurveChart({
   project,
   workPackages,
   dataDate,
-  evm,
+  history,
 }: {
   project: Project;
   workPackages: readonly WorkPackage[];
   dataDate: string;
-  evm: EvmResult;
+  history: CurvePoint[];
 }) {
   const cur = project.moneda;
   const plotW = W - PAD.left - PAD.right;
   const plotH = H - PAD.top - PAD.bottom;
 
-  const x = (t: number) => PAD.left + t * plotW;
+  const startMs = Date.parse(project.fechaInicio);
+  const endMs = Date.parse(project.fechaFinPlan);
+  const span = endMs - startMs || 1;
+
+  const tOf = (iso: string) => (Date.parse(iso) - startMs) / span;
+  const x = (t: number) => PAD.left + Math.max(0, Math.min(1, t)) * plotW;
   const y = (v: number) => PAD.top + (1 - v / project.bac) * plotH;
 
-  // Muestreo de la curva S de PV a lo largo del cronograma.
+  // Curva S de PV a lo largo del cronograma completo.
   const N = 48;
-  const pts: Array<[number, number]> = [];
+  const pvPts: string[] = [];
   for (let i = 0; i <= N; i++) {
     const t = i / N;
     const date = isoAtFraction(project.fechaInicio, project.fechaFinPlan, t);
-    pts.push([x(t), y(plannedValue(workPackages, date, sCurve))]);
+    pvPts.push(`${i === 0 ? 'M' : 'L'}${x(t).toFixed(1)},${y(plannedValue(workPackages, date, sCurve)).toFixed(1)}`);
   }
-  const pvPath = pts.map(([px, py], i) => `${i === 0 ? 'M' : 'L'}${px.toFixed(1)},${py.toFixed(1)}`).join(' ');
+  const pvPath = pvPts.join(' ');
 
-  // Fracción temporal de la fecha de corte.
-  const tNow =
-    (Date.parse(dataDate) - Date.parse(project.fechaInicio)) /
-    (Date.parse(project.fechaFinPlan) - Date.parse(project.fechaInicio));
-  const nowX = x(tNow);
+  // Polilíneas reales de EV y AC (historia de cortes).
+  const lineFor = (sel: (p: CurvePoint) => number) =>
+    history.map((p, i) => `${i === 0 ? 'M' : 'L'}${x(tOf(p.date)).toFixed(1)},${y(sel(p)).toFixed(1)}`).join(' ');
+  const evPath = lineFor((p) => p.ev);
+  const acPath = lineFor((p) => p.ac);
+
+  const nowX = x(tOf(dataDate));
+  const last = history[history.length - 1];
+  const pvNow = last?.pv ?? 0;
+  const evNow = last?.ev ?? 0;
+  const acNow = last?.ac ?? 0;
 
   const series = [
-    { key: 'pv', label: 'PV · planificado', value: evm.pv, color: '#7EA5B0' },
-    { key: 'ev', label: 'EV · ganado', value: evm.ev, color: '#E7EEF0' },
-    { key: 'ac', label: 'AC · real', value: evm.ac, color: '#E8A33D' },
+    { key: 'pv', label: 'PV · planificado', value: pvNow, color: '#7EA5B0' },
+    { key: 'ev', label: 'EV · ganado', value: evNow, color: '#E7EEF0' },
+    { key: 'ac', label: 'AC · real', value: acNow, color: '#E8A33D' },
   ];
 
   // Reparto vertical de las etiquetas por su altura real, evitando solapes.
@@ -66,46 +78,44 @@ export function SCurveChart({
     .map((s) => ({ ...s, dotY: y(s.value), labelY: y(s.value) }))
     .sort((a, b) => a.labelY - b.labelY);
   for (let i = 1; i < placed.length; i++) {
-    if (placed[i]!.labelY < placed[i - 1]!.labelY + GAP) {
-      placed[i]!.labelY = placed[i - 1]!.labelY + GAP;
-    }
+    if (placed[i]!.labelY < placed[i - 1]!.labelY + GAP) placed[i]!.labelY = placed[i - 1]!.labelY + GAP;
   }
 
   return (
     <Panel>
-      <SectionHead
-        eyebrow="Curva S"
-        title="Valor planificado, ganado y real"
-        aside={`corte ${dataDate}`}
-      />
+      <SectionHead eyebrow="Curva S" title="Valor planificado, ganado y real" aside={`corte ${dataDate}`} />
       <div className="px-3 py-4">
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label="Curva S del proyecto">
-          {/* Línea de BAC (tope) y baseline, recesivas. */}
+          {/* BAC (tope) y baseline. */}
           <line x1={PAD.left} y1={y(project.bac)} x2={PAD.left + plotW} y2={y(project.bac)} stroke="#1E4351" strokeDasharray="3 4" />
           <text x={PAD.left} y={y(project.bac) - 6} className="num" fontSize="11" fill="#7EA5B0">
             BAC {money(project.bac, cur)}
           </text>
           <line x1={PAD.left} y1={y(0)} x2={PAD.left + plotW} y2={y(0)} stroke="#1E4351" />
 
-          {/* Línea vertical de fecha de corte. */}
+          {/* Fecha de corte. */}
           <line x1={nowX} y1={PAD.top} x2={nowX} y2={y(0)} stroke="#1E4351" />
           <text x={nowX} y={H - PAD.bottom + 20} fontSize="11" fill="#7EA5B0" textAnchor="middle">
-            hoy
+            corte
           </text>
 
-          {/* Curva S de PV. */}
+          {/* PV (baseline S), EV y AC. */}
           <path d={pvPath} fill="none" stroke="#7EA5B0" strokeWidth="2" />
+          <path d={acPath} fill="none" stroke="#E8A33D" strokeWidth="2" />
+          <path d={evPath} fill="none" stroke="#E7EEF0" strokeWidth="2" />
 
-          {/* Puntos a la fecha de corte, con etiqueta directa a la derecha
-              y una línea guía desde el punto hasta su etiqueta. */}
+          {/* Marcadores en cada corte histórico. */}
+          {history.map((p) => (
+            <g key={p.date}>
+              <circle cx={x(tOf(p.date))} cy={y(p.ac)} r="2.6" fill="#E8A33D" />
+              <circle cx={x(tOf(p.date))} cy={y(p.ev)} r="2.6" fill="#E7EEF0" />
+            </g>
+          ))}
+
+          {/* Puntos y etiquetas a la fecha de corte. */}
           {placed.map((s) => (
             <g key={s.key}>
-              <path
-                d={`M${nowX},${s.dotY} L${labelX - 6},${s.labelY - 3}`}
-                fill="none"
-                stroke="#1E4351"
-                strokeWidth="1"
-              />
+              <path d={`M${nowX},${s.dotY} L${labelX - 6},${s.labelY - 3}`} fill="none" stroke="#1E4351" strokeWidth="1" />
               <circle cx={nowX} cy={s.dotY} r="4.5" fill={s.color} stroke="#102A33" strokeWidth="2" />
               <text x={labelX} y={s.labelY - 3} fontSize="12" fill={s.color}>
                 <tspan className="num" fontWeight="600">
@@ -119,8 +129,8 @@ export function SCurveChart({
           ))}
         </svg>
         <p className="px-2 text-[12px] leading-snug text-tech/80">
-          La curva es el plan de devengamiento (perfil S). A la fecha de corte, EV por debajo de PV
-          es atraso; AC por encima de EV es sobrecosto.
+          La línea teal es el plan de devengamiento (perfil S). EV por debajo de PV es atraso; AC por
+          encima de EV es sobrecosto.
         </p>
       </div>
     </Panel>

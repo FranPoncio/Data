@@ -4,9 +4,10 @@ Aplicación web de gestión de proyectos cuyo diferencial es un **motor completo
 de Earned Value Management (EVM)**, configurable por tipo de proyecto (obra
 civil, industrial, TI, servicios).
 
-> Estado: en construcción. Incluye el scaffolding, el motor EVM con tests, y
-> una **maqueta** del tablero con datos de ejemplo. Falta la persistencia
-> (Dexie) y el estado (Zustand) sobre datos reales.
+> Estado: en construcción. Incluye el scaffolding, el motor EVM con tests, el
+> tablero, y la **persistencia local** (Dexie/IndexedDB) con estado (Zustand):
+> crear/editar proyectos y paquetes, cargar cortes de avance y mirar el
+> proyecto a cualquier fecha de corte.
 
 ## Stack
 
@@ -21,11 +22,12 @@ pmtool/
 │  │  ├─ types.ts    Modelo de datos + tipos del motor EVM
 │  │  ├─ evm.ts      Motor EVM (funciones puras)
 │  │  └─ evm.test.ts Tests del motor
-│  ├─ analytics/     Análisis derivado (estado, exposición, decisiones)
-│  ├─ fixtures/      Datos de ejemplo para la maqueta
-│  ├─ ui/            Interfaz (tablero + componentes)
-│  ├─ db/            Persistencia con Dexie (IndexedDB)   [pendiente]
-│  ├─ store/         Estado con Zustand                    [pendiente]
+│  ├─ analytics/     Análisis derivado (estado, exposición, decisiones,
+│  │                 corte vigente e historia EV/AC)
+│  ├─ db/            Persistencia con Dexie (IndexedDB) + seed
+│  ├─ store/         Estado con Zustand + selectores derivados
+│  ├─ fixtures/      Datos de ejemplo (seed inicial)
+│  ├─ ui/            Interfaz (tablero, componentes y formularios)
 │  └─ test/setup.ts  Setup de testing-library
 ├─ tailwind.config.ts  Tokens de paleta y tipografías
 └─ vite.config.ts      Vite + Vitest
