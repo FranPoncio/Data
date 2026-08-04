@@ -1,0 +1,82 @@
+{
+  "name": "Radar IA · Hacker News → Sheet",
+  "flow": [
+    {
+      "id": 1,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDeCompress": true
+      },
+      "mapper": {
+        "url": "https://hn.algolia.com/api/v1/search_by_date?query=AI%20agent&tags=story&hitsPerPage=20",
+        "method": "get",
+        "headers": [],
+        "qs": [],
+        "bodyType": "",
+        "parseResponse": true
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0,
+          "name": "HN: historias sobre agentes IA"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "google-sheets:addMultipleRows",
+      "version": 2,
+      "parameters": {
+        "__IMTCONN__": null
+      },
+      "mapper": {
+        "spreadsheetId": "REEMPLAZAR_CON_TU_SPREADSHEET_ID",
+        "sheetId": "RadarIA",
+        "tableFirstRow": "A1:Z1",
+        "insertUnformatted": false,
+        "rows": []
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0,
+          "name": "Sheet: agregar filas"
+        },
+        "parameters": [
+          {
+            "name": "__IMTCONN__",
+            "type": "account:google",
+            "label": "Connection",
+            "required": true
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "version": 1,
+    "instant": false,
+    "scenario": {
+      "dlq": false,
+      "slots": null,
+      "dataloss": false,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "roundtrips": 1,
+      "sequential": false,
+      "confidential": false,
+      "freshVariables": false,
+      "autoCommitTriggerLast": true
+    },
+    "designer": {
+      "orphans": []
+    }
+  },
+  "scheduling": {
+    "type": "daily",
+    "time": "08:00"
+  }
+}

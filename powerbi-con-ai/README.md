@@ -44,6 +44,14 @@ Y **[ejemplos completos y reproducibles](ejemplos/)** con datos, medidas e imág
 | [Prompts encadenados](agente-ia/prompts/) | Los 6 prompts listos para copiar/pegar |
 | [Plantillas de entrada](agente-ia/plantillas/) | Brief de empresa + especificación de informe |
 
+### 🔁 Automatización (automatizacion/)
+| Recurso | Para qué |
+|---------|----------|
+| [El loop Make → Power BI](automatizacion/README.md) | Cómo se refrescan los datos solos, todos los días |
+| [Fuentes de datos](automatizacion/fuentes-datos.md) | APIs públicas sin key y por qué elegir esas |
+| [Modelo y medidas · Radar IA](automatizacion/modelo-radar-ia.md) | Esquema estrella + DAX para datos de tendencias IT |
+| [Blueprint de Make](automatizacion/blueprint-radar-ia.json) | El escenario listo para importar |
+
 ### 🧪 Ejemplos (ejemplos/)
 | Ejemplo | Descripción |
 |---------|-------------|
@@ -120,6 +128,7 @@ powerbi-con-ai/
 ├── index.html             ← versión web (GitHub Pages)
 ├── docs/                  ← guía paso a paso (01 a 08)
 ├── agente-ia/             ← el agente: flujo + prompts + plantillas
+├── automatizacion/        ← el loop Make → Power BI (blueprint + fuentes)
 ├── ejemplos/              ← proyectos completos con datos y medidas
 └── assets/img/            ← diagramas y mockups (SVG)
 ```
