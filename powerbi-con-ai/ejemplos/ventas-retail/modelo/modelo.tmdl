@@ -1,0 +1,83 @@
+// ============================================================
+//  Fragmento TMDL de referencia — Ejemplo Ventas Retail
+//  Muestra cómo se ve el modelo como TEXTO (formato PBIP/TMDL).
+//  No es un archivo para importar tal cual: es para que veas la
+//  estructura que un agente de IA puede generar y vos versionar en Git.
+//  Ver docs/05-modelo-estrella.md
+// ============================================================
+
+table Hechos_Ventas
+    column VentaID
+        dataType: int64
+        isHidden: true
+        summarizeBy: none
+
+    column Fecha
+        dataType: dateTime
+        summarizeBy: none
+
+    column ProductoKey
+        dataType: int64
+        isHidden: true
+        summarizeBy: none
+
+    column ClienteKey
+        dataType: int64
+        isHidden: true
+        summarizeBy: none
+
+    column VendedorKey
+        dataType: int64
+        isHidden: true
+        summarizeBy: none
+
+    column Cantidad
+        dataType: int64
+        summarizeBy: sum
+
+    column Importe
+        dataType: decimal
+        summarizeBy: sum
+        formatString: "\$#,0"
+
+    measure 'Ventas totales' = SUM(Hechos_Ventas[Importe])
+        formatString: "\$#,0"
+
+    measure 'Margen %' = DIVIDE([Ventas totales] - [Costo total], [Ventas totales])
+        formatString: "0.0%"
+
+table Dim_Producto
+    column ProductoKey
+        dataType: int64
+        isKey: true
+        summarizeBy: none
+    column Nombre
+        dataType: string
+    column Categoria
+        dataType: string
+    column Marca
+        dataType: string
+    column Costo
+        dataType: decimal
+        formatString: "\$#,0"
+
+table Dim_Cliente
+    column ClienteKey
+        dataType: int64
+        isKey: true
+    column Nombre
+        dataType: string
+    column Segmento
+        dataType: string
+    column Provincia
+        dataType: string
+
+relationship Producto_Ventas
+    fromColumn: Hechos_Ventas.ProductoKey
+    toColumn: Dim_Producto.ProductoKey
+    crossFilteringBehavior: singleDirection
+
+relationship Cliente_Ventas
+    fromColumn: Hechos_Ventas.ClienteKey
+    toColumn: Dim_Cliente.ClienteKey
+    crossFilteringBehavior: singleDirection

@@ -1,0 +1,157 @@
+PaqueteKey,Paquete,SemanaKey,Semana,PV,EV,AC
+PT-01,Ingeniería,1,S01,0,0,0.0
+PT-01,Ingeniería,2,S02,93600.0,93600.0,93600.0
+PT-01,Ingeniería,3,S03,316800.0,316800.0,316800.0
+PT-01,Ingeniería,4,S04,583200.0,583200.0,583200.0
+PT-01,Ingeniería,5,S05,806400.0,806400.0,806400.0
+PT-01,Ingeniería,6,S06,900000,900000,900000.0
+PT-01,Ingeniería,7,S07,900000,900000,900000.0
+PT-01,Ingeniería,8,S08,900000,900000,900000.0
+PT-01,Ingeniería,9,S09,900000,900000,900000.0
+PT-01,Ingeniería,10,S10,900000,900000,900000.0
+PT-01,Ingeniería,11,S11,900000,900000,900000.0
+PT-01,Ingeniería,12,S12,900000,900000,900000.0
+PT-01,Ingeniería,13,S13,900000,900000,900000.0
+PT-01,Ingeniería,14,S14,900000,900000,900000.0
+PT-01,Ingeniería,15,S15,900000,900000,900000.0
+PT-01,Ingeniería,16,S16,900000,900000,900000.0
+PT-01,Ingeniería,17,S17,900000,900000,900000.0
+PT-01,Ingeniería,18,S18,900000,900000,900000.0
+PT-01,Ingeniería,19,S19,900000,,
+PT-01,Ingeniería,20,S20,900000,,
+PT-01,Ingeniería,21,S21,900000,,
+PT-01,Ingeniería,22,S22,900000,,
+PT-01,Ingeniería,23,S23,900000,,
+PT-01,Ingeniería,24,S24,900000,,
+PT-01,Ingeniería,25,S25,900000,,
+PT-01,Ingeniería,26,S26,900000,,
+PT-02,Movimiento de suelo,1,S01,0,0,0.0
+PT-02,Movimiento de suelo,2,S02,0,0,0.0
+PT-02,Movimiento de suelo,3,S03,0,0,0.0
+PT-02,Movimiento de suelo,4,S04,0,0,0.0
+PT-02,Movimiento de suelo,5,S05,51562.5,51562.5,53157.22
+PT-02,Movimiento de suelo,6,S06,187500.0,187500.0,193298.97
+PT-02,Movimiento de suelo,7,S07,379687.5,379687.5,391430.41
+PT-02,Movimiento de suelo,8,S08,600000.0,600000.0,618556.7
+PT-02,Movimiento de suelo,9,S09,820312.5,820312.5,845682.99
+PT-02,Movimiento de suelo,10,S10,1012500.0,1012500.0,1043814.43
+PT-02,Movimiento de suelo,11,S11,1148437.5,1148437.5,1183956.19
+PT-02,Movimiento de suelo,12,S12,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,13,S13,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,14,S14,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,15,S15,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,16,S16,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,17,S17,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,18,S18,1200000,1200000,1237113.4
+PT-02,Movimiento de suelo,19,S19,1200000,,
+PT-02,Movimiento de suelo,20,S20,1200000,,
+PT-02,Movimiento de suelo,21,S21,1200000,,
+PT-02,Movimiento de suelo,22,S22,1200000,,
+PT-02,Movimiento de suelo,23,S23,1200000,,
+PT-02,Movimiento de suelo,24,S24,1200000,,
+PT-02,Movimiento de suelo,25,S25,1200000,,
+PT-02,Movimiento de suelo,26,S26,1200000,,
+PT-03,Tendido de caños,1,S01,0,0,0.0
+PT-03,Tendido de caños,2,S02,0,0,0.0
+PT-03,Tendido de caños,3,S03,0,0,0.0
+PT-03,Tendido de caños,4,S04,0,0,0.0
+PT-03,Tendido de caños,5,S05,0,0,0.0
+PT-03,Tendido de caños,6,S06,0,0,0.0
+PT-03,Tendido de caños,7,S07,0,0,0.0
+PT-03,Tendido de caños,8,S08,0,0,0.0
+PT-03,Tendido de caños,9,S09,51157.41,37287.36,42372.0
+PT-03,Tendido de caños,10,S10,192592.59,141757.18,161087.7
+PT-03,Tendido de caños,11,S11,406250.0,302321.09,343546.69
+PT-03,Tendido de caños,12,S12,674074.07,507890.74,577148.57
+PT-03,Tendido de caños,13,S13,978009.26,747377.75,849292.9
+PT-03,Tendido de caños,14,S14,1300000.0,1009693.75,1147379.26
+PT-03,Tendido de caños,15,S15,1621990.74,1283750.38,1458807.25
+PT-03,Tendido de caños,16,S16,1925925.93,1558459.26,1770976.43
+PT-03,Tendido de caños,17,S17,2193750.0,1822732.03,2071286.4
+PT-03,Tendido de caños,18,S18,2407407.41,2065480.32,2347136.73
+PT-03,Tendido de caños,19,S19,2548842.59,,
+PT-03,Tendido de caños,20,S20,2600000,,
+PT-03,Tendido de caños,21,S21,2600000,,
+PT-03,Tendido de caños,22,S22,2600000,,
+PT-03,Tendido de caños,23,S23,2600000,,
+PT-03,Tendido de caños,24,S24,2600000,,
+PT-03,Tendido de caños,25,S25,2600000,,
+PT-03,Tendido de caños,26,S26,2600000,,
+PT-04,Soldadura,1,S01,0,0,0.0
+PT-04,Soldadura,2,S02,0,0,0.0
+PT-04,Soldadura,3,S03,0,0,0.0
+PT-04,Soldadura,4,S04,0,0,0.0
+PT-04,Soldadura,5,S05,0,0,0.0
+PT-04,Soldadura,6,S06,0,0,0.0
+PT-04,Soldadura,7,S07,0,0,0.0
+PT-04,Soldadura,8,S08,0,0,0.0
+PT-04,Soldadura,9,S09,0,0,0.0
+PT-04,Soldadura,10,S10,0,0,0.0
+PT-04,Soldadura,11,S11,35416.67,28856.25,31028.23
+PT-04,Soldadura,12,S12,133333.33,109350.0,117580.65
+PT-04,Soldadura,13,S13,281250.0,232368.75,249858.87
+PT-04,Soldadura,14,S14,466666.67,388800.0,418064.52
+PT-04,Soldadura,15,S15,677083.33,569531.25,612399.19
+PT-04,Soldadura,16,S16,900000.0,765450.0,823064.52
+PT-04,Soldadura,17,S17,1122916.67,967443.75,1040262.1
+PT-04,Soldadura,18,S18,1333333.33,1166400.0,1254193.55
+PT-04,Soldadura,19,S19,1518750.0,,
+PT-04,Soldadura,20,S20,1666666.67,,
+PT-04,Soldadura,21,S21,1764583.33,,
+PT-04,Soldadura,22,S22,1800000,,
+PT-04,Soldadura,23,S23,1800000,,
+PT-04,Soldadura,24,S24,1800000,,
+PT-04,Soldadura,25,S25,1800000,,
+PT-04,Soldadura,26,S26,1800000,,
+PT-05,Pruebas hidráulicas,1,S01,0,0,0.0
+PT-05,Pruebas hidráulicas,2,S02,0,0,0.0
+PT-05,Pruebas hidráulicas,3,S03,0,0,0.0
+PT-05,Pruebas hidráulicas,4,S04,0,0,0.0
+PT-05,Pruebas hidráulicas,5,S05,0,0,0.0
+PT-05,Pruebas hidráulicas,6,S06,0,0,0.0
+PT-05,Pruebas hidráulicas,7,S07,0,0,0.0
+PT-05,Pruebas hidráulicas,8,S08,0,0,0.0
+PT-05,Pruebas hidráulicas,9,S09,0,0,0.0
+PT-05,Pruebas hidráulicas,10,S10,0,0,0.0
+PT-05,Pruebas hidráulicas,11,S11,0,0,0.0
+PT-05,Pruebas hidráulicas,12,S12,0,0,0.0
+PT-05,Pruebas hidráulicas,13,S13,0,0,0.0
+PT-05,Pruebas hidráulicas,14,S14,0,0,0.0
+PT-05,Pruebas hidráulicas,15,S15,0,0,0.0
+PT-05,Pruebas hidráulicas,16,S16,0,0,0.0
+PT-05,Pruebas hidráulicas,17,S17,0,0,0.0
+PT-05,Pruebas hidráulicas,18,S18,0,0,0.0
+PT-05,Pruebas hidráulicas,19,S19,51851.85,,
+PT-05,Pruebas hidráulicas,20,S20,181481.48,,
+PT-05,Pruebas hidráulicas,21,S21,350000.0,,
+PT-05,Pruebas hidráulicas,22,S22,518518.52,,
+PT-05,Pruebas hidráulicas,23,S23,648148.15,,
+PT-05,Pruebas hidráulicas,24,S24,700000,,
+PT-05,Pruebas hidráulicas,25,S25,700000,,
+PT-05,Pruebas hidráulicas,26,S26,700000,,
+PT-06,Puesta en marcha,1,S01,0,0,0.0
+PT-06,Puesta en marcha,2,S02,0,0,0.0
+PT-06,Puesta en marcha,3,S03,0,0,0.0
+PT-06,Puesta en marcha,4,S04,0,0,0.0
+PT-06,Puesta en marcha,5,S05,0,0,0.0
+PT-06,Puesta en marcha,6,S06,0,0,0.0
+PT-06,Puesta en marcha,7,S07,0,0,0.0
+PT-06,Puesta en marcha,8,S08,0,0,0.0
+PT-06,Puesta en marcha,9,S09,0,0,0.0
+PT-06,Puesta en marcha,10,S10,0,0,0.0
+PT-06,Puesta en marcha,11,S11,0,0,0.0
+PT-06,Puesta en marcha,12,S12,0,0,0.0
+PT-06,Puesta en marcha,13,S13,0,0,0.0
+PT-06,Puesta en marcha,14,S14,0,0,0.0
+PT-06,Puesta en marcha,15,S15,0,0,0.0
+PT-06,Puesta en marcha,16,S16,0,0,0.0
+PT-06,Puesta en marcha,17,S17,0,0,0.0
+PT-06,Puesta en marcha,18,S18,0,0,0.0
+PT-06,Puesta en marcha,19,S19,0,,
+PT-06,Puesta en marcha,20,S20,0,,
+PT-06,Puesta en marcha,21,S21,0,,
+PT-06,Puesta en marcha,22,S22,0,,
+PT-06,Puesta en marcha,23,S23,171875.0,,
+PT-06,Puesta en marcha,24,S24,550000.0,,
+PT-06,Puesta en marcha,25,S25,928125.0,,
+PT-06,Puesta en marcha,26,S26,1100000,,

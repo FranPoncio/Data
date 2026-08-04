@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 360" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="940" height="360" rx="18" fill="#0b1220"/>
+  <text x="470" y="46" text-anchor="middle" font-size="24" font-weight="700" fill="#f8fafc">El flujo del agente en 5 fases</text>
+
+  <defs><marker id="a2" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto"><path d="M0,0 L9,4 L0,8 Z" fill="#a855f7"/></marker></defs>
+
+  <!-- 5 pasos -->
+  <g>
+    <circle cx="110" cy="180" r="60" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+    <text x="110" y="165" text-anchor="middle" font-size="30">🔍</text>
+    <text x="110" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#f5d0fe">1. LEER</text>
+    <text x="110" y="270" text-anchor="middle" font-size="12" fill="#cbd5e1">Entiende el</text>
+    <text x="110" y="286" text-anchor="middle" font-size="12" fill="#cbd5e1">negocio y datos</text>
+  </g>
+  <g>
+    <circle cx="290" cy="180" r="60" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+    <text x="290" y="165" text-anchor="middle" font-size="30">⭐</text>
+    <text x="290" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#f5d0fe">2. MODELAR</text>
+    <text x="290" y="270" text-anchor="middle" font-size="12" fill="#cbd5e1">Esquema estrella</text>
+    <text x="290" y="286" text-anchor="middle" font-size="12" fill="#cbd5e1">y relaciones</text>
+  </g>
+  <g>
+    <circle cx="470" cy="180" r="60" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+    <text x="470" y="165" text-anchor="middle" font-size="30">🔤</text>
+    <text x="470" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#f5d0fe">3. MEDIR</text>
+    <text x="470" y="270" text-anchor="middle" font-size="12" fill="#cbd5e1">DAX + Power</text>
+    <text x="470" y="286" text-anchor="middle" font-size="12" fill="#cbd5e1">Query (M)</text>
+  </g>
+  <g>
+    <circle cx="650" cy="180" r="60" fill="#3b0764" stroke="#a855f7" stroke-width="2"/>
+    <text x="650" y="165" text-anchor="middle" font-size="30">📐</text>
+    <text x="650" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#f5d0fe">4. ARMAR</text>
+    <text x="650" y="270" text-anchor="middle" font-size="12" fill="#cbd5e1">Visuales,</text>
+    <text x="650" y="286" text-anchor="middle" font-size="12" fill="#cbd5e1">layout, relato</text>
+  </g>
+  <g>
+    <circle cx="830" cy="180" r="60" fill="#14532d" stroke="#22c55e" stroke-width="2"/>
+    <text x="830" y="165" text-anchor="middle" font-size="30">✅</text>
+    <text x="830" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">5. REVISAR</text>
+    <text x="830" y="270" text-anchor="middle" font-size="12" fill="#cbd5e1">QA + iterar</text>
+    <text x="830" y="286" text-anchor="middle" font-size="12" fill="#cbd5e1">con vos</text>
+  </g>
+
+  <line x1="172" y1="180" x2="228" y2="180" stroke="#a855f7" stroke-width="3" marker-end="url(#a2)"/>
+  <line x1="352" y1="180" x2="408" y2="180" stroke="#a855f7" stroke-width="3" marker-end="url(#a2)"/>
+  <line x1="532" y1="180" x2="588" y2="180" stroke="#a855f7" stroke-width="3" marker-end="url(#a2)"/>
+  <line x1="712" y1="180" x2="768" y2="180" stroke="#a855f7" stroke-width="3" marker-end="url(#a2)"/>
+</svg>

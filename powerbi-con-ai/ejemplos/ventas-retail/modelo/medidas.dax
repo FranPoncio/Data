@@ -1,0 +1,78 @@
+// ============================================================
+//  MEDIDAS DAX — Ejemplo Ventas Retail
+//  Pegá cada medida en Power BI:  Modelado → Nueva medida
+//  (o abrí este archivo como referencia al armar el modelo)
+// ============================================================
+
+// ---------- Base ----------
+
+// Suma de todas las ventas (importe). Formato: $ #,0
+Ventas totales = SUM(Hechos_Ventas[Importe])
+
+// Unidades vendidas. Formato: #,0
+Cantidad vendida = SUM(Hechos_Ventas[Cantidad])
+
+// Número de operaciones (filas de venta). Formato: #,0
+Operaciones = COUNTROWS(Hechos_Ventas)
+
+// Importe promedio por operación. Formato: $ #,0
+Ticket promedio = DIVIDE([Ventas totales], [Operaciones])
+
+
+// ---------- Rentabilidad ----------
+
+// Costo de lo vendido (cantidad * costo del producto). Formato: $ #,0
+Costo total =
+SUMX(Hechos_Ventas, Hechos_Ventas[Cantidad] * RELATED(Dim_Producto[Costo]))
+
+// Ganancia bruta. Formato: $ #,0
+Margen $ = [Ventas totales] - [Costo total]
+
+// Rentabilidad sobre ventas. Formato: 0.0%
+Margen % = DIVIDE([Margen $], [Ventas totales])
+
+
+// ---------- Time intelligence (requiere Dim_Calendario marcada como tabla de fechas) ----------
+
+// Acumulado del año hasta la fecha. Formato: $ #,0
+Ventas YTD = TOTALYTD([Ventas totales], Dim_Calendario[Date])
+
+// Mismo período del año anterior. Formato: $ #,0
+Ventas año anterior =
+CALCULATE([Ventas totales], SAMEPERIODLASTYEAR(Dim_Calendario[Date]))
+
+// Crecimiento interanual. Formato: 0.0%
+Variación % interanual =
+DIVIDE([Ventas totales] - [Ventas año anterior], [Ventas año anterior])
+
+// Ventas móviles de los últimos 12 meses. Formato: $ #,0
+Ventas últimos 12 meses =
+CALCULATE(
+    [Ventas totales],
+    DATESINPERIOD(Dim_Calendario[Date], MAX(Dim_Calendario[Date]), -12, MONTH)
+)
+
+
+// ---------- Ranking y contribución ----------
+
+// Posición del producto por ventas (1 = el que más vende). Formato: #,0
+Ranking de producto =
+RANKX(ALL(Dim_Producto[Nombre]), [Ventas totales], , DESC)
+
+// Participación de la selección sobre el total de productos. Formato: 0.0%
+% del total =
+DIVIDE([Ventas totales], CALCULATE([Ventas totales], ALL(Dim_Producto)))
+
+
+// ---------- Tabla calendario (crear con "Nueva tabla") ----------
+// Dim_Calendario =
+// ADDCOLUMNS(
+//     CALENDAR(DATE(2024,1,1), DATE(2025,12,31)),
+//     "Año", YEAR([Date]),
+//     "MesNro", MONTH([Date]),
+//     "Mes", FORMAT([Date], "MMM"),
+//     "AñoMes", FORMAT([Date], "YYYY-MM"),
+//     "Trimestre", "T" & FORMAT([Date], "Q"),
+//     "DíaSemana", FORMAT([Date], "ddd")
+// )
+// Luego: Modelado → Marcar como tabla de fechas → columna [Date]

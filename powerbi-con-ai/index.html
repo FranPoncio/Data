@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POWERBI CON AI</title>
+<style>
+  :root{
+    --bg:#0b1220; --card:#111a2e; --card2:#0f172a; --border:#22304d;
+    --text:#e8eefc; --muted:#93a4c4; --accent:#a855f7; --accent2:#38bdf8; --amber:#fbbf24;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f4f6fb; --card:#ffffff; --card2:#eef2fa; --border:#dbe3f0;
+           --text:#0f172a; --muted:#5b6b8c; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  a{color:var(--accent2);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+  header{text-align:center;padding:64px 20px 32px;background:
+     radial-gradient(1200px 400px at 50% -80px, rgba(168,85,247,.25), transparent 70%)}
+  h1{font-size:clamp(30px,6vw,52px);margin:0 0 8px;font-weight:800;letter-spacing:-1px}
+  h1 .em{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--muted);font-size:clamp(15px,2.5vw,19px);max-width:720px;margin:0 auto}
+  .cta{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 22px;border-radius:12px;font-weight:700;border:1px solid var(--border)}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#fff;border:none}
+  .btn.ghost{background:var(--card);color:var(--text)}
+  img{max-width:100%;height:auto;border-radius:14px;display:block;margin:22px auto}
+  section{padding:34px 0}
+  h2{font-size:26px;margin:0 0 6px}
+  .lead{color:var(--muted);margin:0 0 20px}
+  .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px}
+  .card h3{margin:0 0 6px;font-size:17px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .card .tag{display:inline-block;font-size:12px;color:var(--accent);font-weight:700;margin-bottom:8px}
+  ol.steps{counter-reset:s;list-style:none;padding:0;max-width:720px;margin:0 auto}
+  ol.steps li{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px 14px 54px;position:relative;margin-bottom:10px}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:50%;transform:translateY(-50%);
+     width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+  .note{background:var(--card2);border:1px dashed var(--border);border-radius:12px;padding:14px 16px;color:var(--muted);font-size:14px}
+  footer{text-align:center;color:var(--muted);padding:40px 20px;border-top:1px solid var(--border);margin-top:24px;font-size:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>🤖📊 <span class="em">POWERBI CON AI</span></h1>
+    <p class="sub">Un agente de IA que <strong>lee tu proyecto o empresa</strong>, diseña el modelo de datos, escribe las medidas DAX y arma el informe técnico en Power BI. Con guía, ejemplos y plantillas.</p>
+    <div class="cta">
+      <a class="btn primary" href="README.md">📚 Empezar por el índice</a>
+      <a class="btn ghost" href="agente-ia/">🤖 Ver el agente</a>
+      <a class="btn ghost" href="ejemplos/">🧪 Ver ejemplos</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <img src="assets/img/arquitectura.svg" alt="Arquitectura del flujo">
+
+  <section>
+    <h2>El flujo en 5 fases</h2>
+    <p class="lead">Leer → Modelar → Medir → Armar → Revisar. Cada fase tiene su prompt listo para usar.</p>
+    <img src="assets/img/flujo-agente.svg" alt="Flujo del agente">
+    <div class="grid">
+      <div class="card"><span class="tag">1 · LEER</span><h3>Entiende el negocio</h3><p>Define preguntas y KPIs a partir de tu brief y tus datos.</p></div>
+      <div class="card"><span class="tag">2 · MODELAR</span><h3>Esquema estrella</h3><p>Hechos, dimensiones y relaciones bien armadas.</p></div>
+      <div class="card"><span class="tag">3 · MEDIR</span><h3>DAX + Power Query</h3><p>Medidas y transformaciones listas para pegar.</p></div>
+      <div class="card"><span class="tag">4 · ARMAR</span><h3>Layout y narrativa</h3><p>Qué visual, dónde, y el texto técnico del informe.</p></div>
+      <div class="card"><span class="tag">5 · REVISAR</span><h3>Control de calidad</h3><p>Totales, coherencia, seguridad y nombres.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Guía completa</h2>
+    <p class="lead">De cero a informe publicado, incluso si nunca usaste Power BI.</p>
+    <div class="grid">
+      <div class="card"><h3>📥 <a href="docs/02-instalar-power-bi.md">Instalar Power BI</a></h3><p>Gratis, paso a paso.</p></div>
+      <div class="card"><h3>🧹 <a href="docs/04-preparar-datos.md">Preparar datos</a></h3><p>Power Query y M.</p></div>
+      <div class="card"><h3>⭐ <a href="docs/05-modelo-estrella.md">Modelo estrella</a></h3><p>Hechos, dimensiones, PBIP/TMDL.</p></div>
+      <div class="card"><h3>🔤 <a href="docs/06-medidas-dax.md">Medidas DAX</a></h3><p>KPIs, YTD, ranking.</p></div>
+      <div class="card"><h3>📐 <a href="docs/07-visuales-y-diseno.md">Visuales y diseño</a></h3><p>Qué gráfico y cómo.</p></div>
+      <div class="card"><h3>☁️ <a href="docs/08-publicar-y-compartir.md">Publicar</a></h3><p>Service y actualización.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Ejemplos reproducibles</h2>
+    <div class="grid">
+      <div class="card"><span class="tag">🟢 Principiante</span><h3><a href="ejemplos/ventas-retail/">🛒 Ventas Retail</a></h3><p>5.572 ventas → dashboard comercial completo con datos y medidas.</p></div>
+      <div class="card"><span class="tag">🟡 Intermedio</span><h3><a href="ejemplos/proyecto-evm/">🏗️ Proyecto EVM</a></h3><p>Control de obra con Earned Value: CPI, SPI, curva S, EAC.</p></div>
+    </div>
+    <img src="assets/img/mockup-dashboard-ventas.svg" alt="Mockup dashboard ventas">
+  </section>
+
+  <section>
+    <h2>Empezar en 5 pasos</h2>
+    <ol class="steps">
+      <li>Instalá <a href="docs/02-instalar-power-bi.md">Power BI Desktop</a> (gratis).</li>
+      <li>Abrí el ejemplo <a href="ejemplos/ventas-retail/">Ventas Retail</a>.</li>
+      <li>Importá los CSV de <code>datos/</code> (Obtener datos → Texto/CSV).</li>
+      <li>Pegá las medidas de <code>medidas.dax</code> (Modelado → Nueva medida).</li>
+      <li>Armá los visuales siguiendo el README del ejemplo.</li>
+    </ol>
+    <p class="note">ℹ️ Las imágenes de dashboards son <strong>maquetas de diseño</strong> que muestran el resultado esperado — no capturas de tu Power BI. Cuando lo armes con tus datos, el tuyo se va a ver así.</p>
+  </section>
+</div>
+
+<footer>
+  POWERBI CON AI · Guía + agente de IA para informes técnicos en Power BI · Español 🇦🇷<br>
+  <a href="README.md">Índice</a> · <a href="agente-ia/">Agente</a> · <a href="docs/01-que-es-y-como-usar.md">Docs</a>
+</footer>
+</body>
+</html>

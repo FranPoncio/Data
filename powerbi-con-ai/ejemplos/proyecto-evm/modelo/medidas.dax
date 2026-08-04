@@ -1,0 +1,71 @@
+// ============================================================
+//  MEDIDAS DAX — Ejemplo Proyecto EVM (Earned Value Management)
+//  Control de obra: valor planificado, ganado y costo real.
+//  Pegá cada medida en Power BI: Modelado → Nueva medida.
+// ============================================================
+
+// ---------- Los 3 valores base (EVM clásico) ----------
+
+// PV — Planned Value / Valor Planificado. Formato: $ #,0
+PV = SUM(Hechos_EVM[PV])
+
+// EV — Earned Value / Valor Ganado (avance físico valorizado). Formato: $ #,0
+EV = SUM(Hechos_EVM[EV])
+
+// AC — Actual Cost / Costo Real incurrido. Formato: $ #,0
+AC = SUM(Hechos_EVM[AC])
+
+// BAC — Budget At Completion / Presupuesto total del alcance. Formato: $ #,0
+BAC = SUM(Dim_Paquete[BAC])
+
+
+// ---------- Variaciones ----------
+
+// CV — Variación de costo. Positivo = ahorro, negativo = sobrecosto. Formato: $ #,0
+CV = [EV] - [AC]
+
+// SV — Variación de cronograma. Positivo = adelanto, negativo = atraso. Formato: $ #,0
+SV = [EV] - [PV]
+
+
+// ---------- Índices de desempeño ----------
+
+// CPI — eficiencia de costo. >1 bien, <1 sobrecosto. Formato: 0.00
+CPI = DIVIDE([EV], [AC])
+
+// SPI — eficiencia de cronograma. >1 adelanto, <1 atraso. Formato: 0.00
+SPI = DIVIDE([EV], [PV])
+
+
+// ---------- Proyecciones ----------
+
+// % de avance físico del proyecto. Formato: 0.0%
+% Avance = DIVIDE([EV], [BAC])
+
+// EAC — Estimación del costo final (asumiendo que el CPI se mantiene). Formato: $ #,0
+EAC = DIVIDE([BAC], [CPI])
+
+// ETC — Costo estimado para terminar lo que falta. Formato: $ #,0
+ETC = [EAC] - [AC]
+
+// VAC — Variación al finalizar (presupuesto vs. estimado). Formato: $ #,0
+VAC = [BAC] - [EAC]
+
+
+// ---------- Semáforo (para formato condicional en tablas/tarjetas) ----------
+
+// Devuelve un color según el CPI del paquete. Usalo en "Formato → color por regla" o como medida de color.
+Color CPI =
+VAR c = [CPI]
+RETURN
+    SWITCH(
+        TRUE(),
+        c >= 0.98, "#22c55e",   // verde = ok
+        c >= 0.92, "#fbbf24",   // amarillo = atención
+        "#f87171"               // rojo = crítico
+    )
+
+// Estado en texto. Formato: texto
+Estado CPI =
+VAR c = [CPI]
+RETURN SWITCH(TRUE(), c >= 0.98, "OK", c >= 0.92, "Atención", "Crítico")

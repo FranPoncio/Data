@@ -1,0 +1,26 @@
+ProductoKey,Nombre,Categoria,Marca,Costo
+1,Gaseosa Cola 2L,Bebidas,MarcaDos,1498.18
+2,Agua Mineral 2L,Bebidas,MarcaUno,1760.85
+3,Cerveza Rubia 1L,Bebidas,MarcaUno,568.01
+4,Jugo Naranja 1L,Bebidas,MarcaUno,1653.05
+5,Vino Malbec 750,Bebidas,MarcaDos,3665.91
+6,Fideos 500g,Almacén,Genérica,438.73
+7,Arroz 1kg,Almacén,MarcaDos,1847.24
+8,Aceite Girasol 900,Almacén,Genérica,635.64
+9,Harina 1kg,Almacén,MarcaUno,518.71
+10,Azúcar 1kg,Almacén,MarcaUno,3805.56
+11,Leche Entera 1L,Lácteos,Genérica,2435.28
+12,Yogur Bebible 900,Lácteos,MarcaDos,483.48
+13,Queso Cremoso 500,Lácteos,MarcaDos,472.36
+14,Manteca 200g,Lácteos,MarcaDos,1371.55
+15,Dulce de Leche 400,Lácteos,MarcaTres,2300.54
+16,Detergente 750,Limpieza,MarcaDos,2372.95
+17,Lavandina 1L,Limpieza,MarcaDos,681.31
+18,Jabón en Polvo 800,Limpieza,MarcaUno,1677.87
+19,Papel Higiénico x4,Limpieza,MarcaDos,2388.16
+20,Esponja x3,Limpieza,Genérica,2136.73
+21,Shampoo 400,Perfumería,Genérica,3175.75
+22,Jabón Tocador x3,Perfumería,Genérica,2466.58
+23,Pasta Dental 90,Perfumería,MarcaDos,1637.85
+24,Desodorante 150,Perfumería,MarcaDos,3239.2
+25,Alcohol en Gel 250,Perfumería,MarcaTres,602.86

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 520" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="920" height="520" rx="18" fill="#0f172a"/>
+  <text x="460" y="48" text-anchor="middle" font-size="26" font-weight="700" fill="#f8fafc">POWERBI CON AI — Arquitectura del flujo</text>
+  <text x="460" y="76" text-anchor="middle" font-size="14" fill="#94a3b8">De los datos crudos al informe técnico, con un agente de IA en el medio</text>
+
+  <!-- Column 1: Fuentes -->
+  <rect x="40" y="120" width="200" height="320" rx="14" fill="#1e293b" stroke="#334155"/>
+  <text x="140" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#38bdf8">1 · Fuentes</text>
+  <g font-size="13" fill="#e2e8f0">
+    <rect x="62" y="170" width="156" height="40" rx="8" fill="#0f172a"/><text x="140" y="195" text-anchor="middle">📊 Excel / CSV</text>
+    <rect x="62" y="222" width="156" height="40" rx="8" fill="#0f172a"/><text x="140" y="247" text-anchor="middle">🗄️ Bases SQL</text>
+    <rect x="62" y="274" width="156" height="40" rx="8" fill="#0f172a"/><text x="140" y="299" text-anchor="middle">🌐 APIs / Web</text>
+    <rect x="62" y="326" width="156" height="40" rx="8" fill="#0f172a"/><text x="140" y="351" text-anchor="middle">📁 SharePoint</text>
+    <rect x="62" y="378" width="156" height="40" rx="8" fill="#0f172a"/><text x="140" y="403" text-anchor="middle">📝 Docs de la empresa</text>
+  </g>
+
+  <!-- Column 2: Agente IA -->
+  <rect x="300" y="120" width="240" height="320" rx="14" fill="#1e293b" stroke="#a855f7"/>
+  <text x="420" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#c084fc">2 · Agente de IA 🤖</text>
+  <g font-size="12.5" fill="#e2e8f0">
+    <rect x="320" y="170" width="200" height="46" rx="8" fill="#3b0764"/><text x="420" y="190" text-anchor="middle" fill="#f5d0fe">Lee proyecto/empresa</text><text x="420" y="207" text-anchor="middle" font-size="11" fill="#d8b4fe">entiende el negocio y los KPIs</text>
+    <rect x="320" y="226" width="200" height="46" rx="8" fill="#3b0764"/><text x="420" y="246" text-anchor="middle" fill="#f5d0fe">Diseña el modelo ⭐</text><text x="420" y="263" text-anchor="middle" font-size="11" fill="#d8b4fe">esquema estrella + relaciones</text>
+    <rect x="320" y="282" width="200" height="46" rx="8" fill="#3b0764"/><text x="420" y="302" text-anchor="middle" fill="#f5d0fe">Genera DAX + Power Query</text><text x="420" y="319" text-anchor="middle" font-size="11" fill="#d8b4fe">medidas, columnas, M</text>
+    <rect x="320" y="338" width="200" height="46" rx="8" fill="#3b0764"/><text x="420" y="358" text-anchor="middle" fill="#f5d0fe">Arma el informe 📐</text><text x="420" y="375" text-anchor="middle" font-size="11" fill="#d8b4fe">layout, visuales, narrativa</text>
+    <rect x="320" y="394" width="200" height="34" rx="8" fill="#3b0764"/><text x="420" y="416" text-anchor="middle" fill="#f5d0fe">Revisa / QA ✅</text>
+  </g>
+
+  <!-- Column 3: Power BI -->
+  <rect x="600" y="120" width="280" height="320" rx="14" fill="#1e293b" stroke="#f59e0b"/>
+  <text x="740" y="150" text-anchor="middle" font-size="16" font-weight="700" fill="#fbbf24">3 · Power BI</text>
+  <g font-size="13" fill="#e2e8f0">
+    <rect x="622" y="170" width="236" height="44" rx="8" fill="#0f172a"/><text x="740" y="197" text-anchor="middle">🖥️ Power BI Desktop (modelo + visuales)</text>
+    <rect x="622" y="224" width="236" height="44" rx="8" fill="#0f172a"/><text x="740" y="251" text-anchor="middle">📄 Proyecto PBIP / TMDL (texto)</text>
+    <rect x="622" y="278" width="236" height="44" rx="8" fill="#0f172a"/><text x="740" y="305" text-anchor="middle">☁️ Power BI Service (publicar)</text>
+    <rect x="622" y="332" width="236" height="44" rx="8" fill="#0f172a"/><text x="740" y="359" text-anchor="middle">📈 Informe técnico + dashboard</text>
+    <rect x="622" y="386" width="236" height="40" rx="8" fill="#0f172a"/><text x="740" y="411" text-anchor="middle">🔄 Actualización programada</text>
+  </g>
+
+  <!-- Arrows -->
+  <defs><marker id="ar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#64748b"/></marker></defs>
+  <line x1="242" y1="280" x2="298" y2="280" stroke="#64748b" stroke-width="3" marker-end="url(#ar)"/>
+  <line x1="542" y1="280" x2="598" y2="280" stroke="#64748b" stroke-width="3" marker-end="url(#ar)"/>
+</svg>

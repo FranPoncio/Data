@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 560" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="820" height="560" rx="18" fill="#0f172a"/>
+  <text x="410" y="44" text-anchor="middle" font-size="23" font-weight="700" fill="#f8fafc">Esquema estrella — Ejemplo Ventas Retail</text>
+  <text x="410" y="70" text-anchor="middle" font-size="13" fill="#94a3b8">1 tabla de hechos (ventas) rodeada de dimensiones</text>
+
+  <defs><marker id="l" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><circle cx="3" cy="3" r="3" fill="#f59e0b"/></marker></defs>
+
+  <!-- Fact table center -->
+  <rect x="310" y="240" width="200" height="150" rx="10" fill="#7c2d12" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="310" y="240" width="200" height="30" rx="10" fill="#9a3412"/>
+  <text x="410" y="261" text-anchor="middle" font-size="14" font-weight="700" fill="#fde68a">📊 Hechos_Ventas</text>
+  <g font-size="12" fill="#fed7aa"><text x="324" y="292">🔑 FechaKey</text><text x="324" y="312">🔑 ProductoKey</text><text x="324" y="332">🔑 ClienteKey</text><text x="324" y="352"># Cantidad</text><text x="324" y="372">$ Importe</text></g>
+
+  <!-- Dim Calendario (top) -->
+  <rect x="310" y="90" width="200" height="110" rx="10" fill="#1e293b" stroke="#38bdf8"/>
+  <rect x="310" y="90" width="200" height="28" rx="10" fill="#0c4a6e"/>
+  <text x="410" y="110" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">📅 Dim_Calendario</text>
+  <g font-size="12" fill="#bae6fd"><text x="324" y="138">🔑 FechaKey</text><text x="324" y="158">Año · Mes · Trim.</text><text x="324" y="178">DíaSemana · Festivo</text></g>
+
+  <!-- Dim Producto (left) -->
+  <rect x="40" y="270" width="200" height="110" rx="10" fill="#1e293b" stroke="#38bdf8"/>
+  <rect x="40" y="270" width="200" height="28" rx="10" fill="#0c4a6e"/>
+  <text x="140" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">📦 Dim_Producto</text>
+  <g font-size="12" fill="#bae6fd"><text x="54" y="318">🔑 ProductoKey</text><text x="54" y="338">Nombre · Categoría</text><text x="54" y="358">Marca · Costo</text></g>
+
+  <!-- Dim Cliente (right) -->
+  <rect x="580" y="270" width="200" height="110" rx="10" fill="#1e293b" stroke="#38bdf8"/>
+  <rect x="580" y="270" width="200" height="28" rx="10" fill="#0c4a6e"/>
+  <text x="680" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">🙋 Dim_Cliente</text>
+  <g font-size="12" fill="#bae6fd"><text x="594" y="318">🔑 ClienteKey</text><text x="594" y="338">Nombre · Segmento</text><text x="594" y="358">Provincia · Ciudad</text></g>
+
+  <!-- Dim Vendedor (bottom) -->
+  <rect x="310" y="440" width="200" height="90" rx="10" fill="#1e293b" stroke="#38bdf8"/>
+  <rect x="310" y="440" width="200" height="28" rx="10" fill="#0c4a6e"/>
+  <text x="410" y="460" text-anchor="middle" font-size="13" font-weight="700" fill="#7dd3fc">🧑‍💼 Dim_Vendedor</text>
+  <g font-size="12" fill="#bae6fd"><text x="324" y="488">🔑 VendedorKey</text><text x="324" y="508">Nombre · Sucursal</text></g>
+
+  <!-- Relations -->
+  <line x1="410" y1="200" x2="410" y2="240" stroke="#f59e0b" stroke-width="2" marker-start="url(#l)" marker-end="url(#l)"/>
+  <line x1="240" y1="320" x2="310" y2="320" stroke="#f59e0b" stroke-width="2" marker-start="url(#l)" marker-end="url(#l)"/>
+  <line x1="510" y1="320" x2="580" y2="320" stroke="#f59e0b" stroke-width="2" marker-start="url(#l)" marker-end="url(#l)"/>
+  <line x1="410" y1="390" x2="410" y2="440" stroke="#f59e0b" stroke-width="2" marker-start="url(#l)" marker-end="url(#l)"/>
+</svg>

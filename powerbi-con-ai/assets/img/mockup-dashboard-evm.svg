@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="960" height="560" fill="#0b1220"/>
+  <rect x="0" y="0" width="960" height="60" fill="#111827"/>
+  <text x="28" y="38" font-size="21" font-weight="700" fill="#f8fafc">🏗️ Control de Proyecto — EVM (Gasoducto)</text>
+  <text x="810" y="36" font-size="12" fill="#9ca3af">Corte: Sem. 18</text>
+
+  <!-- KPI EVM -->
+  <g font-family="Segoe UI">
+    <rect x="24" y="80" width="176" height="86" rx="12" fill="#111827" stroke="#1f2937"/>
+    <text x="40" y="104" font-size="11" fill="#9ca3af">CPI (costo)</text>
+    <text x="40" y="138" font-size="26" font-weight="700" fill="#f87171">0,92</text>
+    <text x="40" y="158" font-size="11" fill="#f87171">sobrecosto</text>
+    <rect x="216" y="80" width="176" height="86" rx="12" fill="#111827" stroke="#1f2937"/>
+    <text x="232" y="104" font-size="11" fill="#9ca3af">SPI (plazo)</text>
+    <text x="232" y="138" font-size="26" font-weight="700" fill="#fbbf24">0,97</text>
+    <text x="232" y="158" font-size="11" fill="#fbbf24">leve atraso</text>
+    <rect x="408" y="80" width="176" height="86" rx="12" fill="#111827" stroke="#1f2937"/>
+    <text x="424" y="104" font-size="11" fill="#9ca3af">CV (var. costo)</text>
+    <text x="424" y="138" font-size="24" font-weight="700" fill="#f87171">-$ 320 k</text>
+    <rect x="600" y="80" width="176" height="86" rx="12" fill="#111827" stroke="#1f2937"/>
+    <text x="616" y="104" font-size="11" fill="#9ca3af">EAC (est. final)</text>
+    <text x="616" y="138" font-size="24" font-weight="700" fill="#e5e7eb">$ 8,7 M</text>
+    <rect x="792" y="80" width="144" height="86" rx="12" fill="#111827" stroke="#1f2937"/>
+    <text x="808" y="104" font-size="11" fill="#9ca3af">% Avance</text>
+    <text x="808" y="138" font-size="26" font-weight="700" fill="#34d399">61%</text>
+  </g>
+
+  <!-- Curva S -->
+  <rect x="24" y="182" width="600" height="270" rx="12" fill="#111827" stroke="#1f2937"/>
+  <text x="40" y="208" font-size="14" font-weight="700" fill="#f3f4f6">Curva S — PV · EV · AC</text>
+  <line x1="60" y1="420" x2="600" y2="420" stroke="#374151"/>
+  <line x1="60" y1="230" x2="60" y2="420" stroke="#374151"/>
+  <!-- PV planned -->
+  <path d="M60,415 C160,405 260,360 340,300 C420,250 520,225 600,222" fill="none" stroke="#60a5fa" stroke-width="3"/>
+  <!-- EV earned -->
+  <path d="M60,417 C150,412 240,390 320,352 L360,338" fill="none" stroke="#34d399" stroke-width="3"/>
+  <!-- AC actual -->
+  <path d="M60,416 C150,408 240,378 320,330 L360,315" fill="none" stroke="#f87171" stroke-width="3"/>
+  <line x1="360" y1="230" x2="360" y2="420" stroke="#6b7280" stroke-dasharray="4 4"/>
+  <text x="366" y="244" font-size="10" fill="#9ca3af">hoy</text>
+  <g font-size="11"><text x="440" y="205" fill="#60a5fa">━ PV</text><text x="490" y="205" fill="#34d399">━ EV</text><text x="540" y="205" fill="#f87171">━ AC</text></g>
+
+  <!-- Panel decisiones -->
+  <rect x="640" y="182" width="296" height="270" rx="12" fill="#111827" stroke="#1f2937"/>
+  <text x="656" y="208" font-size="14" font-weight="700" fill="#f3f4f6">Semáforo por paquete</text>
+  <g font-size="12" fill="#d1d5db">
+    <circle cx="666" cy="238" r="6" fill="#f87171"/><text x="682" y="242">Tendido de caños — crítico</text>
+    <circle cx="666" cy="268" r="6" fill="#fbbf24"/><text x="682" y="272">Soldadura — atención</text>
+    <circle cx="666" cy="298" r="6" fill="#34d399"/><text x="682" y="302">Movimiento de suelo — ok</text>
+    <circle cx="666" cy="328" r="6" fill="#34d399"/><text x="682" y="332">Ingeniería — ok</text>
+    <circle cx="666" cy="358" r="6" fill="#fbbf24"/><text x="682" y="362">Pruebas hidráulicas — atención</text>
+  </g>
+  <rect x="656" y="384" width="264" height="52" rx="8" fill="#3f1d1d"/>
+  <text x="668" y="406" font-size="11.5" fill="#fca5a5">⚠ Recomendación del agente:</text>
+  <text x="668" y="424" font-size="11" fill="#fecaca">reforzar cuadrilla de tendido (CPI 0,92)</text>
+
+  <!-- Footer narrative -->
+  <rect x="24" y="468" width="912" height="72" rx="12" fill="#0f172a" stroke="#1f2937"/>
+  <text x="40" y="494" font-size="12.5" font-weight="700" fill="#93c5fd">🤖 Resumen narrativo (generado por IA):</text>
+  <text x="40" y="516" font-size="11.5" fill="#cbd5e1">El proyecto avanza al 61% con leve atraso (SPI 0,97) y sobrecosto acumulado (CPI 0,92). Al ritmo actual se</text>
+  <text x="40" y="532" font-size="11.5" fill="#cbd5e1">estima un costo final de $8,7 M (+4,8% sobre presupuesto). El paquete "Tendido de caños" concentra el riesgo.</text>
+</svg>
